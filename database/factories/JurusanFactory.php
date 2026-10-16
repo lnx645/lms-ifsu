@@ -25,6 +25,6 @@ class JurusanFactory extends Factory
             ['name' => 'Akuntansi', 'kode' => 'AKT'],
         ];
 
-        return fake()->randomElement($list);
+        return $this->faker->randomElement($list);
     }
 }

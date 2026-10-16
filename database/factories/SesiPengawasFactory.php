@@ -18,7 +18,7 @@ class SesiPengawasFactory extends Factory
         return [
             'sesi_ujian_id' => SesiUjian::factory(),
             'guru_id' => null,
-            'nama_pengawas' => fake()->name(),
+            'nama_pengawas' => $this->faker->name(),
             'peran' => 'pengawas',
         ];
     }

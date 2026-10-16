@@ -7,7 +7,6 @@ use App\Models\Guru;
 use App\Models\GuruKelas;
 use App\Models\Penilaian;
 use App\Models\PeriodeUjian;
-use App\Models\RuangUjian;
 use App\Models\SesiUjian;
 use App\Models\SesiUjianPeserta;
 use App\Models\SiswaKelas;
@@ -406,7 +405,6 @@ class UjianController extends BaseAppController implements HasMiddleware
             'sesis' => $sesis,
             'siswaKelas' => $siswaKelas,
             'pesertaMap' => $pesertaMap,
-            'ruangs' => RuangUjian::orderBy('kode')->get(['id', 'kode', 'nama']),
         ]);
     }
 
@@ -653,15 +651,12 @@ class UjianController extends BaseAppController implements HasMiddleware
             'tanggal_mulai' => ['nullable', 'date'],
             'tanggal_selesai' => ['nullable', 'date', 'after_or_equal:tanggal_mulai'],
             'durasi_menit' => ['required', 'integer', 'min:1', 'max:600'],
-            'maks_attempt' => ['required', 'integer', 'min:1', 'max:10'],
             'acak_soal' => ['boolean'],
             'acak_opsi' => ['boolean'],
             'tampilkan_hasil' => ['boolean'],
             'wajib_fullscreen' => ['boolean'],
-            'maks_pelanggaran' => ['required', 'integer', 'min:0', 'max:50'],
             'nilai_maks' => ['required', 'integer', 'min:1', 'max:1000'],
             'kkm' => ['nullable', 'integer', 'min:0', 'max:100'],
-            'bobot' => ['required', 'integer', 'min:1', 'max:100'],
             'token_pengelola' => ['sometimes', Rule::in(['guru', 'admin'])],
         ], [], [
             'guru_kelas_id' => 'Kelas & Mata Pelajaran',

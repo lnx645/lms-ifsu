@@ -21,7 +21,6 @@ return new class extends Migration
             Schema::rename('pelanggaran_logs', 'cbt_pelanggaran_logs');
             Schema::rename('penilaian', 'cbt_penilaian');
             Schema::rename('penilaian_kelas', 'cbt_penilaian_kelas');
-            Schema::rename('periode_ujians', 'cbt_periode_ujians');
             Schema::rename('ruang_ujians', 'cbt_ruang_ujians');
             Schema::rename('sesi_pengawas', 'cbt_sesi_pengawas');
             Schema::rename('sesi_ujian_pesertas', 'cbt_sesi_ujian_pesertas');
@@ -40,7 +39,6 @@ return new class extends Migration
             Schema::rename('cbt_sesi_ujian_pesertas', 'sesi_ujian_pesertas');
             Schema::rename('cbt_sesi_pengawas', 'sesi_pengawas');
             Schema::rename('cbt_ruang_ujians', 'ruang_ujians');
-            Schema::rename('cbt_periode_ujians', 'periode_ujians');
             Schema::rename('cbt_penilaian_kelas', 'penilaian_kelas');
             Schema::rename('cbt_penilaian', 'penilaian');
             Schema::rename('cbt_pelanggaran_logs', 'pelanggaran_logs');

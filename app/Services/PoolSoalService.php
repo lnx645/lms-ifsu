@@ -29,8 +29,10 @@ class PoolSoalService
             // Ambil komposisi kelompok jika ada
             $kelompok = KelompokBankSoal::find($kelompokId);
             $komposisi = $kelompok?->komposisi ?? [];
+            // Jika semua persentase 0, anggap tidak ada komposisi
+            $adaKomposisi = collect($komposisi)->contains(fn($c) => ((float)($c["persentase"] ?? 0)) > 0);
 
-            if (! empty($komposisi)) {
+            if ($adaKomposisi) {
                 // Distribusikan jumlah berdasarkan persentase komposisi
                 foreach ($komposisi as $tipe => $cfg) {
                     $persen = (float) ($cfg['persentase'] ?? 0);

@@ -16,9 +16,9 @@ class PeriodeUjianFactory extends Factory
     public function definition(): array
     {
         return [
-            'kategori' => fake()->randomElement(['uts', 'uas', 'usbk']),
+            'kategori' => $this->faker->randomElement(['uts', 'uas', 'usbk']),
             'tahun_ajaran_id' => TahunAjaran::factory(),
-            'nama' => fake()->words(3, true),
+            'nama' => $this->faker->words(3, true),
             'tanggal_mulai' => now()->subDay(),
             'tanggal_selesai' => now()->addWeek(),
         ];

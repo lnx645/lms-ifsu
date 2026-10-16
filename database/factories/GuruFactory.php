@@ -18,11 +18,11 @@ class GuruFactory extends Factory
     public function definition(): array
     {
         return [
-            'nip' => fake()->unique()->numerify('##################'),
-            'nama_lengkap' => fake()->name(),
-            'jenis_kelamin' => fake()->randomElement(['L', 'P']),
-            'alamat' => fake()->address(),
-            'pendidikan_terakhir' => fake()->randomElement(['SMA/SMK', 'D3', 'D4', 'S1', 'S2', 'S3']),
+            'nip' => $this->faker->unique()->numerify('##################'),
+            'nama_lengkap' => $this->faker->name(),
+            'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
+            'alamat' => $this->faker->address(),
+            'pendidikan_terakhir' => $this->faker->randomElement(['SMA/SMK', 'D3', 'D4', 'S1', 'S2', 'S3']),
             'foto_profil' => null,
             'is_aktif' => true,
         ];

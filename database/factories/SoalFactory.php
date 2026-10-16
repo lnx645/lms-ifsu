@@ -18,7 +18,7 @@ class SoalFactory extends Factory
         return [
             'ujian_id' => Ujian::factory(),
             'tipe' => 'pg',
-            'pertanyaan' => '<p>'.fake()->sentence().'</p>',
+            'pertanyaan' => '<p>'.$this->faker->sentence().'</p>',
             'poin' => 1,
             'urutan' => 0,
             'kunci_isian' => null,

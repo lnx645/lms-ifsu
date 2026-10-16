@@ -20,10 +20,10 @@ class BankSoalFactory extends Factory
             'matpel_id' => Matpel::factory(),
             'guru_id' => Guru::factory(),
             'tipe' => 'pg',
-            'pertanyaan' => '<p>'.fake()->sentence().'</p>',
+            'pertanyaan' => '<p>'.$this->faker->sentence().'</p>',
             'poin' => 10,
-            'topik' => fake()->optional()->word(),
-            'kesulitan' => fake()->randomElement(BankSoal::KESULITAN),
+            'topik' => $this->faker->optional()->word(),
+            'kesulitan' => $this->faker->randomElement(BankSoal::KESULITAN),
             'kunci_isian' => null,
             'isian_case_sensitive' => false,
         ];

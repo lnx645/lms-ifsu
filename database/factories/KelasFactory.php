@@ -18,9 +18,9 @@ class KelasFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->randomElement(['X', 'XI', 'XII']).' '.fake()->randomElement(['A', 'B', 'C']),
-            'tingkat' => fake()->randomElement(['X', 'XI', 'XII']),
-            'deskripsi' => fake()->sentence(),
+            'nama' => $this->faker->randomElement(['X', 'XI', 'XII']).' '.$this->faker->randomElement(['A', 'B', 'C']),
+            'tingkat' => $this->faker->randomElement(['X', 'XI', 'XII']),
+            'deskripsi' => $this->faker->sentence(),
             'guru_id' => null,
             'active' => true,
             'parent_id' => null,

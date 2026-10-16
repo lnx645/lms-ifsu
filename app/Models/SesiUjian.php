@@ -56,10 +56,6 @@ class SesiUjian extends Model
         return $this->hasMany(SesiUjianPeserta::class, 'sesi_ujian_id');
     }
 
-    public function ruang(): BelongsTo
-    {
-        return $this->belongsTo(RuangUjian::class, 'ruang_ujian_id');
-    }
 
     public function pengawas(): HasMany
     {

@@ -18,7 +18,7 @@ class TahunAjaranFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->numerify('20##/20##'),
+            'name' => $this->faker->unique()->numerify('20##/20##'),
             'active' => false,
         ];
     }

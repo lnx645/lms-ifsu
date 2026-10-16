@@ -37,6 +37,7 @@ class Siswa extends Model
     /** @use HasFactory<SiswaFactory> */
     use HasFactory;
 
+    protected $table = 'siswa';
     protected $primaryKey = 'nisn';
 
     public $incrementing = false;

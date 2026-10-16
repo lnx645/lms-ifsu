@@ -17,7 +17,7 @@ class BankOpsiSoalFactory extends Factory
     {
         return [
             'bank_soal_id' => BankSoal::factory(),
-            'teks' => fake()->words(3, true),
+            'teks' => $this->faker->words(3, true),
             'benar' => false,
             'urutan' => 0,
         ];

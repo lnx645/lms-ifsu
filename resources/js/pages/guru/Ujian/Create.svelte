@@ -1,164 +1,122 @@
 <script lang="ts">
-    import { router, useForm } from '@inertiajs/svelte';
-    import { Button, Card, CardBody } from '@sveltestrap/sveltestrap';
-    import PageHeader from '@/components/PageHeader.svelte';
+    import { router, useForm } from "@inertiajs/svelte";
+    import PageHeader from "@/components/PageHeader.svelte";
 
     let { penugasan = [] }: {
         penugasan?: { value: number; label: string }[];
     } = $props();
 
     const form = useForm({
-        judul: '',
-        kategori: 'kuis',
+        judul: "",
+        kategori: "kuis",
         guru_kelas_id: null,
-        tanggal_mulai: '',
-        tanggal_selesai: '',
+        tanggal_mulai: "",
+        tanggal_selesai: "",
         durasi_menit: 60,
-        deskripsi: '',
+        deskripsi: "",
         nilai_maks: 100,
         kkm: 75,
         acak_soal: true,
         acak_opsi: true,
-        tata_tertib: '',
+        tata_tertib: "",
     });
 
+    let showLanjutan = $state(false);
+
     function simpan() {
-        form.post('/app/guru/ujian', {
-            onSuccess: () => router.get('/app/guru/ujian'),
+        form.post("/app/guru/ujian", {
+            onSuccess: () => router.get("/app/guru/ujian"),
         });
     }
 </script>
 
-<div class="container py-3">
-    <PageHeader title="Buat Ujian Baru" subtitle="Kuis / Ulangan Harian" />
+<div class="container py-3" style="max-width: 600px">
+    <PageHeader title="Buat Ujian" subtitle="Kuis / Ulangan Harian" />
 
-    <div class="row g-3">
-        <div class="col-lg-8">
-            <Card class="shadow-sm border-0 mb-3">
-                <CardBody class="p-4">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
-                        <span class="badge bg-primary rounded-circle p-2"><i class="bi bi-info-circle"></i></span>
-                        Informasi Dasar
-                    </h6>
+    <div class="mb-3">
+        <label class="form-label small fw-semibold" for="e-judul">Judul</label>
+        <input id="e-judul" class="form-control" bind:value={form.judul} placeholder="cth: Kuis Bab 1" />
+        {#if form.errors.judul}<div class="text-danger small">{form.errors.judul}</div>{/if}
+    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="e-judul">JUDUL UJIAN</label>
-                        <input id="e-judul" class="form-control" bind:value={form.judul} placeholder="cth: Kuis Bab 1" />
-                        {#if form.errors.judul}<div class="text-danger small mt-1">{form.errors.judul}</div>{/if}
-                    </div>
+    <div class="mb-3">
+        <label class="form-label small fw-semibold" for="e-kelas">Kelas</label>
+        <select id="e-kelas" class="form-select" bind:value={form.guru_kelas_id}>
+            <option value={null}>-- Pilih --</option>
+            {#each penugasan as p}
+                <option value={p.value}>{p.label}</option>
+            {/each}
+        </select>
+        {#if form.errors.guru_kelas_id}<div class="text-danger small">{form.errors.guru_kelas_id}</div>{/if}
+    </div>
 
-                    <div class="row g-3 mb-3">
-                        <div class="col-6">
-                            <label class="form-label fw-semibold" for="e-kat">KATEGORI</label>
-                            <select id="e-kat" class="form-select" bind:value={form.kategori}>
-                                <option value="kuis">Kuis</option>
-                                <option value="uh">Ulangan Harian</option>
-                            </select>
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label fw-semibold" for="e-dur">DURASI (MENIT)</label>
-                            <input id="e-dur" type="number" class="form-control" bind:value={form.durasi_menit} min="5" max="300" />
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="e-kelas">KELAS & MATA PELAJARAN</label>
-                        <select id="e-kelas" class="form-select" bind:value={form.guru_kelas_id}>
-                            <option value={null}>-- Pilih --</option>
-                            {#each penugasan as p}
-                                <option value={p.value}>{p.label}</option>
-                            {/each}
-                        </select>
-                        {#if form.errors.guru_kelas_id}<div class="text-danger small mt-1">{form.errors.guru_kelas_id}</div>{/if}
-                    </div>
-
-                    <div class="row g-3 mb-3">
-                        <div class="col-6">
-                            <label class="form-label fw-semibold" for="e-tgl">MULAI</label>
-                            <input id="e-tgl" type="datetime-local" class="form-control" bind:value={form.tanggal_mulai} />
-                        </div>
-                        <div class="col-6">
-                            <label class="form-label fw-semibold" for="e-tgl2">DEADLINE</label>
-                            <input id="e-tgl2" type="datetime-local" class="form-control" bind:value={form.tanggal_selesai} />
-                        </div>
-                    </div>
-
-                    <div class="mb-0">
-                        <label class="form-label fw-semibold" for="e-desk">DESKRIPSI</label>
-                        <textarea id="e-desk" class="form-control" rows="2" bind:value={form.deskripsi} placeholder="Deskripsi opsional..."></textarea>
-                    </div>
-                </CardBody>
-            </Card>
-
-            <Card class="shadow-sm border-0">
-                <CardBody class="p-4">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
-                        <span class="badge bg-warning rounded-circle p-2"><i class="bi bi-shield-check"></i></span>
-                        Tata Tertib
-                    </h6>
-                    <textarea id="e-tata" class="form-control" rows="4" bind:value={form.tata_tertib} placeholder="cth: Dilarang membuka buku, dilarang bekerjasama, dll..."></textarea>
-                    <div class="form-text mt-2">Akan ditampilkan kepada siswa sebelum mulai ujian.</div>
-                </CardBody>
-            </Card>
+    <div class="row g-2 mb-3">
+        <div class="col-6">
+            <label class="form-label small fw-semibold" for="e-kat">Kategori</label>
+            <select id="e-kat" class="form-select" bind:value={form.kategori}>
+                <option value="kuis">Kuis</option>
+                <option value="uh">UH</option>
+            </select>
         </div>
-
-        <div class="col-lg-4">
-            <Card class="shadow-sm border-0 mb-3">
-                <CardBody class="p-4">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
-                        <span class="badge bg-success rounded-circle p-2"><i class="bi bi-graph-up"></i></span>
-                        Penilaian
-                    </h6>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="e-kkm">KKM</label>
-                        <input id="e-kkm" type="number" min="0" max="100" class="form-control" bind:value={form.kkm} />
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold" for="e-nmaks">NILAI MAKSIMAL</label>
-                        <input id="e-nmaks" type="number" min="10" max="100" class="form-control" bind:value={form.nilai_maks} />
-                    </div>
-                </CardBody>
-            </Card>
-
-            <Card class="shadow-sm border-0 mb-3">
-                <CardBody class="p-4">
-                    <h6 class="fw-bold mb-3 d-flex align-items-center gap-2">
-                        <span class="badge bg-info rounded-circle p-2"><i class="bi bi-shuffle"></i></span>
-                        Pengacakan
-                    </h6>
-
-                    <div class="d-flex align-items-center justify-content-between py-2 border-bottom">
-                        <div>
-                            <div class="fw-semibold small">Acak Soal</div>
-                            <div class="text-muted" style="font-size: 0.8rem">Urutan soal beda tiap siswa</div>
-                        </div>
-                        <div class="form-check form-switch m-0">
-                            <input class="form-check-input" type="checkbox" id="e-acak-soal" bind:checked={form.acak_soal} style="width: 2.5rem; height: 1.4rem;" />
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-between py-2">
-                        <div>
-                            <div class="fw-semibold small">Acak Opsi</div>
-                            <div class="text-muted" style="font-size: 0.8rem">Urutan jawaban beda tiap siswa</div>
-                        </div>
-                        <div class="form-check form-switch m-0">
-                            <input class="form-check-input" type="checkbox" id="e-acak-opsi" bind:checked={form.acak_opsi} style="width: 2.5rem; height: 1.4rem;" />
-                        </div>
-                    </div>
-                </CardBody>
-            </Card>
-
-            <div class="d-grid gap-2">
-                <Button color="primary" size="lg" onclick={simpan} disabled={form.processing || !form.judul}>
-                    {form.processing ? 'Menyimpan...' : 'Buat Ujian'}
-                </Button>
-                <Button color="light" onclick={() => router.get('/app/guru/ujian')}>Batal</Button>
-            </div>
+        <div class="col-6">
+            <label class="form-label small fw-semibold" for="e-dur">Durasi (mnt)</label>
+            <input id="e-dur" type="number" class="form-control" bind:value={form.durasi_menit} min="5" max="300" />
         </div>
     </div>
+
+    <div class="row g-2 mb-3">
+        <div class="col-6">
+            <label class="form-label small fw-semibold" for="e-tgl">Mulai</label>
+            <input id="e-tgl" type="datetime-local" class="form-control form-control-sm" bind:value={form.tanggal_mulai} />
+        </div>
+        <div class="col-6">
+            <label class="form-label small fw-semibold" for="e-tgl2">Selesai</label>
+            <input id="e-tgl2" type="datetime-local" class="form-control form-control-sm" bind:value={form.tanggal_selesai} />
+        </div>
+    </div>
+
+    <button class="btn btn-link btn-sm p-0 mb-3 text-decoration-none" onclick={() => showLanjutan = !showLanjutan}>
+        {showLanjutan ? "▾" : "▸"} Pengaturan lanjutan
+    </button>
+
+    {#if showLanjutan}
+        <div class="mb-3">
+            <label class="form-label small fw-semibold" for="e-desk">Deskripsi</label>
+            <textarea id="e-desk" class="form-control" rows="2" bind:value={form.deskripsi} placeholder="Opsional..."></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label small fw-semibold" for="e-tata">Tata tertib</label>
+            <textarea id="e-tata" class="form-control" rows="3" bind:value={form.tata_tertib} placeholder="Ditampilkan ke siswa sebelum mulai..."></textarea>
+        </div>
+
+        <div class="row g-2 mb-3">
+            <div class="col-6">
+                <label class="form-label small fw-semibold" for="e-kkm">KKM</label>
+                <input id="e-kkm" type="number" min="0" max="100" class="form-control" bind:value={form.kkm} />
+            </div>
+            <div class="col-6">
+                <label class="form-label small fw-semibold" for="e-nmaks">Nilai maks</label>
+                <input id="e-nmaks" type="number" min="10" max="100" class="form-control" bind:value={form.nilai_maks} />
+            </div>
+        </div>
+
+        <div class="d-flex gap-3 mb-3">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="e-acak-soal" bind:checked={form.acak_soal} />
+                <label class="form-check-label small" for="e-acak-soal">Acak soal</label>
+            </div>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="e-acak-opsi" bind:checked={form.acak_opsi} />
+                <label class="form-check-label small" for="e-acak-opsi">Acak opsi</label>
+            </div>
+        </div>
+    {/if}
+
+    <div class="d-grid gap-2 mt-4">
+        <button class="btn btn-primary btn-lg" onclick={simpan} disabled={form.processing || !form.judul}>
+            {form.processing ? "Menyimpan..." : "Buat Ujian"}
+        </button>
+        <button class="btn btn-light" onclick={() => router.get("/app/guru/ujian")}>Batal</button>
+    </div>
 </div>
-
-

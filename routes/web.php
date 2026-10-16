@@ -11,7 +11,6 @@ use App\Http\Controllers\Guru\TugasController as GuruTugasController;
 use App\Http\Controllers\Guru\UjianAkademikController as GuruUjianAkademikController;
 use App\Http\Controllers\Guru\UjianController as GuruUjianController;
 use App\Http\Controllers\Guru\UjianWizardController as GuruUjianWizardController;
-use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LinkExternalController;
 use App\Http\Controllers\MataPelajaranGuruController;
 use App\Http\Controllers\Siswa\MateriController as SiswaMateriController;
@@ -19,7 +18,6 @@ use App\Http\Controllers\Siswa\NotifikasiController as SiswaNotifikasiController
 use App\Http\Controllers\Siswa\PenilaianController as SiswaPenilaianController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
 use App\Http\Controllers\Siswa\UjianController;
-use App\Http\Controllers\Siswa\UjianController as SiswaUjianController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UjianLoginController;
 use App\Http\Controllers\UjianModeController;
@@ -43,7 +41,6 @@ Route::middleware('guest')->group(function (): void {
 
 Route::middleware(['auth', 'app-only'])->prefix('app')->name('app.')->group(function (): void {
     Route::get('/', DashboardController::class)->name('dashboard');
-    Route::get('matpel/{matpel}/kelas-{id}/manage', KelasController::class)->name('kelas.room');
     Route::get('matpel-saya', [MataPelajaranGuruController::class, 'index'])->name('matpel');
     Route::get('guru/materi', [GuruMateriController::class, 'index'])->name('guru.materi.index');
     Route::get('guru/materi/katalog', [GuruMateriController::class, 'katalog'])->name('guru.materi.katalog');
@@ -114,10 +111,6 @@ Route::middleware(['auth', 'app-only'])->prefix('app')->name('app.')->group(func
 
     // Guru: Fitur akademik penunjang ujian
     Route::get('guru/ujian/{ujian}/sesi/{sesi}/daftar-hadir', [GuruUjianAkademikController::class, 'daftarHadir'])->name('guru.ujian.sesi.hadir');
-    Route::put('guru/ujian/{ujian}/sesi/{sesi}/ruang', [GuruUjianAkademikController::class, 'sesiRuang'])->name('guru.ujian.sesi.ruang');
-    Route::get('guru/ujian/{ujian}/berita-acara', [GuruUjianAkademikController::class, 'beritaAcaraIndex'])->name('guru.ujian.berita-acara.index');
-    Route::post('guru/ujian/{ujian}/berita-acara', [GuruUjianAkademikController::class, 'beritaAcaraStore'])->name('guru.ujian.berita-acara.store');
-    Route::get('guru/ujian/{ujian}/berita-acara/{beritaAcara}/pdf', [GuruUjianAkademikController::class, 'beritaAcaraPdf'])->name('guru.ujian.berita-acara.pdf');
     Route::get('guru/ujian/{ujian}/analisis', [GuruUjianAkademikController::class, 'analisisIndex'])->name('guru.ujian.analisis.index');
     Route::get('guru/ujian/{ujian}/import-template', [GuruUjianAkademikController::class, 'importTemplate'])->name('guru.ujian.import.template');
     Route::post('guru/ujian/{ujian}/import', [GuruUjianAkademikController::class, 'importStore'])->name('guru.ujian.import.store');
@@ -147,15 +140,6 @@ Route::middleware(['auth', 'app-only'])->prefix('app')->name('app.')->group(func
     Route::post('guru/ujian/{ujian}/hasil/tarik-nilai', [GuruHasilUjianController::class, 'tarikKeNilai'])->name('guru.ujian.hasil.tarik-nilai');
 
     // Siswa: Ujian (CBT)
-    Route::get('ujian', [SiswaUjianController::class, 'index'])->name('siswa.ujian.index');
-    Route::get('waktu-server', [SiswaUjianController::class, 'waktuServer'])->name('siswa.waktu-server');
-    Route::post('ujian/{ujian}/mulai', [SiswaUjianController::class, 'mulai'])->name('siswa.ujian.mulai');
-    Route::get('ujian/{ujian}/konfirmasi', [SiswaUjianController::class, 'konfirmasi'])->name('siswa.ujian.konfirmasi');
-    Route::get('ujian/{ujian}/kerjakan', [SiswaUjianController::class, 'kerjakan'])->name('siswa.ujian.kerjakan');
-    Route::post('ujian/{ujian}/jawaban', [SiswaUjianController::class, 'simpanJawaban'])->name('siswa.ujian.jawaban');
-    Route::post('ujian/{ujian}/submit', [SiswaUjianController::class, 'submit'])->name('siswa.ujian.submit');
-    Route::post('ujian/{ujian}/lapor', [SiswaUjianController::class, 'lapor'])->name('siswa.ujian.lapor');
-    Route::get('ujian/{ujian}/hasil', [SiswaUjianController::class, 'hasil'])->name('siswa.ujian.hasil');
     Route::get('notifikasi', [SiswaNotifikasiController::class, 'index'])->name('siswa.notifikasi.index');
     Route::post('notifikasi/baca-semua', [SiswaNotifikasiController::class, 'bacaSemua'])->name('siswa.notifikasi.baca-semua');
     Route::post('notifikasi/{notifikasi}/baca', [SiswaNotifikasiController::class, 'baca'])->name('siswa.notifikasi.baca');

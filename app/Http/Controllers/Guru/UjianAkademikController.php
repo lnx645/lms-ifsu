@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Guru;
 
 use App\Http\Controllers\BaseAppController;
-use App\Models\BeritaAcaraUjian;
-use App\Models\PelanggaranLog;
 use App\Models\SesiUjian;
 use App\Models\Siswa;
 use App\Models\SiswaKelas;
@@ -66,23 +64,6 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
     // 1. Kartu peserta ujian (PDF per sesi)
     // ------------------------------------------------------------------
 
-    public function kartuPeserta(Request $request, Ujian $ujian, SesiUjian $sesi): HttpResponse
-    {
-        $this->milikGuru($request, $ujian);
-        abort_unless($sesi->ujian_id === $ujian->id, 404);
-
-        $sesi->load(['ruang', 'pengawas']);
-
-        $pesertas = $this->pesertaSesi($ujian, $sesi);
-
-        $pdf = Pdf::loadView('pdf.kartu-peserta', [
-            'ujian' => $ujian,
-            'sesi' => $sesi,
-            'pesertas' => $pesertas,
-        ])->setPaper('a4', 'portrait');
-
-        return $pdf->stream("kartu-peserta-{$sesi->nama}.pdf");
-    }
 
     /**
      * Daftar siswa peserta sesi: yang dijatahkan (terjadwal) atau
@@ -115,105 +96,14 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
     // 2. Berita acara ujian
     // ------------------------------------------------------------------
 
-    public function beritaAcaraIndex(Request $request, Ujian $ujian): InertiaResponse
-    {
-        $this->milikGuru($request, $ujian);
 
-        $beritaAcaras = $ujian->beritaAcaras()->with('sesi')->orderByDesc('tanggal')->get();
 
-        return Inertia::render('guru/Ujian/BeritaAcara', [
-            'ujian' => ['id' => $ujian->id, 'judul' => $ujian->judul],
-            'sesis' => $ujian->sesis()->orderBy('urutan')->get(['id', 'nama']),
-            'beritaAcaras' => $beritaAcaras->map(fn (BeritaAcaraUjian $b): array => [
-                'id' => $b->id,
-                'sesi_nama' => $b->sesi?->nama ?? 'Tanpa sesi',
-                'tanggal' => $b->tanggal->translatedFormat('d M Y'),
-                'jumlah_peserta' => $b->jumlah_peserta,
-                'jumlah_hadir' => $b->jumlah_hadir,
-                'jumlah_tidak_hadir' => $b->jumlah_tidak_hadir,
-                'jumlah_pelanggaran' => $b->jumlah_pelanggaran,
-            ]),
-        ]);
-    }
-
-    public function beritaAcaraStore(Request $request, Ujian $ujian): RedirectResponse
-    {
-        $this->milikGuru($request, $ujian);
-
-        $data = $request->validate([
-            'sesi_ujian_id' => ['nullable', 'integer', 'exists:cbt_sesi_ujians,id'],
-            'tanggal' => ['required', 'date'],
-            'nomor_surat' => ['nullable', 'string', 'max:100'],
-            'catatan' => ['nullable', 'string', 'max:2000'],
-            'nama_pengawas' => ['nullable', 'string', 'max:100'],
-            'nama_kepala_sekolah' => ['nullable', 'string', 'max:100'],
-        ]);
-
-        if ($data['sesi_ujian_id'] ?? null) {
-            abort_unless(SesiUjian::where('id', $data['sesi_ujian_id'])->where('ujian_id', $ujian->id)->exists(), 404);
-        }
-
-        $statistik = $this->statistikBeritaAcara($ujian, $data['sesi_ujian_id'] ?? null);
-
-        BeritaAcaraUjian::updateOrCreate(
-            ['ujian_id' => $ujian->id, 'sesi_ujian_id' => $data['sesi_ujian_id'] ?? null],
-            [...$data, ...$statistik]
-        );
-
-        Toast::success('Berita acara disimpan.');
-
-        return Redirect::back();
-    }
-
-    public function beritaAcaraPdf(Request $request, Ujian $ujian, BeritaAcaraUjian $beritaAcara): HttpResponse
-    {
-        $this->milikGuru($request, $ujian);
-        abort_unless($beritaAcara->ujian_id === $ujian->id, 404);
-
-        $beritaAcara->load(['sesi.ruang', 'sesi.pengawas']);
-
-        $pdf = Pdf::loadView('pdf.berita-acara', [
-            'ujian' => $ujian,
-            'beritaAcara' => $beritaAcara,
-        ])->setPaper('a4', 'portrait');
-
-        return $pdf->stream('berita-acara.pdf');
-    }
 
     /**
      * Hitung statistik kehadiran & pelanggaran dari data pengerjaan.
      *
      * @return array<string, int>
      */
-    private function statistikBeritaAcara(Ujian $ujian, ?int $sesiId): array
-    {
-        $query = UjianPengerjaan::where('ujian_id', $ujian->id);
-
-        if ($sesiId !== null) {
-            $query->where('sesi_ujian_id', $sesiId);
-            $jumlahPeserta = SesiUjian::find($sesiId)?->pesertas()->count() ?? 0;
-
-            if ($jumlahPeserta === 0 && ! $ujian->sesiTerjadwal()) {
-                $jumlahPeserta = $query->clone()->distinct('siswa_nisn')->count('siswa_nisn');
-            }
-        } else {
-            $jumlahPeserta = $query->clone()->distinct('siswa_nisn')->count('siswa_nisn');
-        }
-
-        $hadir = (clone $query)->distinct('siswa_nisn')->count('siswa_nisn');
-        $pelanggaran = PelanggaranLog::whereHas(
-            'pengerjaan',
-            fn ($q) => $q->where('ujian_id', $ujian->id)
-                ->when($sesiId !== null, fn ($qq) => $qq->where('sesi_ujian_id', $sesiId))
-        )->count();
-
-        return [
-            'jumlah_peserta' => $jumlahPeserta,
-            'jumlah_hadir' => $hadir,
-            'jumlah_tidak_hadir' => max(0, $jumlahPeserta - $hadir),
-            'jumlah_pelanggaran' => $pelanggaran,
-        ];
-    }
 
     // ------------------------------------------------------------------
     // 3. Analisis butir soal
@@ -365,7 +255,6 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
         $this->milikGuru($request, $ujian);
         abort_unless($sesi->ujian_id === $ujian->id, 404);
 
-        $sesi->load('ruang');
         $pesertas = $this->pesertaSesi($ujian, $sesi);
 
         $hadirNisns = UjianPengerjaan::where('ujian_id', $ujian->id)
@@ -386,39 +275,6 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
     // 9. Ruang ujian & pengawas
     // ------------------------------------------------------------------
 
-    public function sesiRuang(Request $request, Ujian $ujian, SesiUjian $sesi): RedirectResponse
-    {
-        $this->milikGuru($request, $ujian);
-        abort_unless($sesi->ujian_id === $ujian->id, 404);
-
-        $data = $request->validate([
-            'ruang_ujian_id' => ['nullable', 'integer', 'exists:cbt_ruang_ujians,id'],
-        ]);
-
-        // Cegah bentrok: ruang yang sama tidak boleh dipakai sesi lain
-        // yang waktunya tumpang tindih.
-        if ($data['ruang_ujian_id'] && $sesi->waktu_mulai && $sesi->waktu_selesai) {
-            $bentrok = SesiUjian::query()
-                ->where('ruang_ujian_id', $data['ruang_ujian_id'])
-                ->where('id', '!=', $sesi->id)
-                ->where('waktu_mulai', '<', $sesi->waktu_selesai)
-                ->where('waktu_selesai', '>', $sesi->waktu_mulai)
-                ->with('ujian')
-                ->first();
-
-            if ($bentrok) {
-                $label = $bentrok->ujian?->judul ?? 'ujian lain';
-                Toast::error("Ruang bentrok dengan {$bentrok->nama} ({$label}). Pilih ruang atau waktu lain.");
-
-                return Redirect::back();
-            }
-        }
-
-        $sesi->update(['ruang_ujian_id' => $data['ruang_ujian_id']]);
-        Toast::success('Ruang sesi diperbarui.');
-
-        return Redirect::back();
-    }
 
     // ------------------------------------------------------------------
     // 10. Reset pengerjaan siswa

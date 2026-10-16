@@ -18,8 +18,8 @@ class NotifikasiFactory extends Factory
         return [
             'user_id' => User::factory(),
             'tipe' => 'info',
-            'judul' => fake()->sentence(4),
-            'pesan' => fake()->sentence(10),
+            'judul' => $this->faker->sentence(4),
+            'pesan' => $this->faker->sentence(10),
             'tautan' => null,
             'dibaca_at' => null,
         ];

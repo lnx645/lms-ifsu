@@ -17,7 +17,7 @@ class OpsiSoalFactory extends Factory
     {
         return [
             'soal_id' => Soal::factory(),
-            'teks' => fake()->words(3, true),
+            'teks' => $this->faker->words(3, true),
             'benar' => false,
             'urutan' => 0,
         ];

@@ -40,6 +40,7 @@
     "dependencies": {
         "@inertiajs/svelte": "^3.0.0",
         "@inertiajs/vite": "^3.0.0",
+        "@jridgewell/resolve-uri": "^3.1.2",
         "@sveltejs/vite-plugin-svelte": "^7.0.0",
         "@sveltestrap/sveltestrap": "^7.1.0",
         "@tailwindcss/vite": "^4.1.11",

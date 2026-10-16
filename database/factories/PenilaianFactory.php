@@ -23,12 +23,12 @@ class PenilaianFactory extends Factory
     public function definition(): array
     {
         return [
-            'nama' => fake()->sentence(3),
-            'deskripsi' => fake()->optional()->paragraph(),
-            'tipe' => fake()->randomElement(['kognitif', 'sikap', 'tugas', 'cbt']),
-            'nilai_maks' => fake()->numberBetween(100, 1000),
-            'bobot' => fake()->numberBetween(1, 100),
-            'aktif' => fake()->boolean(),
+            'nama' => $this->faker->sentence(3),
+            'deskripsi' => $this->faker->optional()->paragraph(),
+            'tipe' => $this->faker->randomElement(['kognitif', 'sikap', 'tugas', 'cbt']),
+            'nilai_maks' => $this->faker->numberBetween(100, 1000),
+            'bobot' => $this->faker->numberBetween(1, 100),
+            'aktif' => $this->faker->boolean(),
             'sumber' => 'manual',
         ];
     }
