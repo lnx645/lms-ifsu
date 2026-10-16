@@ -53,7 +53,7 @@ class PenilaianController extends Controller
     public function show(Request $request, Penilaian $penilaian): Response
     {
         // Load related kelas and detail count for display.
-        $penilaian->load('kelas', 'detailPenilaian');
+        $penilaian->load("detailPenilaian");
 
         return Inertia::render('admin/Penilaian/Show', [
             'penilaian' => $penilaian,

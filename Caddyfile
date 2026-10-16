@@ -1,0 +1,16 @@
+{
+	frankenphp
+}
+
+:8080 {
+	root * /opt/lms-ifsu/public
+	encode gzip
+
+	# Laravel front controller
+	php_server
+
+	log {
+		output stdout
+		format console
+	}
+}

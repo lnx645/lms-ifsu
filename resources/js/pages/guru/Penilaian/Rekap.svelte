@@ -47,6 +47,14 @@
         subtitle="Leger nilai siswa per kelas &amp; mata pelajaran."
     >
         {#snippet actions()}
+            {#if selectedGuruKelasId}
+                <a
+                    href={PenilaianController.exportMethod({ query: { guru_kelas_id: selectedGuruKelasId } }).url}
+                    class="btn btn-sm btn-success"
+                >
+                    <i class="bi bi-file-earmark-excel me-1"></i>Export Excel
+                </a>
+            {/if}
             <a
                 use:inertia
                 href={PenilaianController.index().url}

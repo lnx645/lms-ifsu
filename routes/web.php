@@ -61,6 +61,7 @@ Route::middleware(['auth', 'app-only'])->prefix('app')->name('app.')->group(func
     Route::get('guru/tugas/{tugas}/pengumpulan/{pengumpulan}/unduh', [GuruTugasController::class, 'pengumpulanUnduh'])->name('guru.tugas.pengumpulan.unduh');
     Route::get('guru/penilaian', [GuruPenilaianController::class, 'index'])->name('guru.penilaian.index');
     Route::get('guru/penilaian/rekap', [GuruPenilaianController::class, 'rekap'])->name('guru.penilaian.rekap');
+    Route::get('guru/penilaian/rekap/export', [GuruPenilaianController::class, 'export'])->name('guru.penilaian.rekap.export');
     Route::get('guru/penilaian/{penilaian}/{guruKelas}', [GuruPenilaianController::class, 'show'])->name('guru.penilaian.show');
     Route::post('guru/penilaian/{penilaian}/{guruKelas}', [GuruPenilaianController::class, 'store'])->name('guru.penilaian.store');
     Route::get('materi', [SiswaMateriController::class, 'index'])->name('siswa.materi.index');

@@ -31,14 +31,6 @@ class Penilaian extends Model
     ];
 
     /**
-     * Kelas yang di‑assign ke penilaian ini (many‑to‑many).
-     */
-    public function kelas()
-    {
-        return $this->belongsToMany(Kelas::class, 'penilaian_kelas');
-    }
-
-    /**
      * Ujian CBT sumber penilaian ini (jika dari CBT).
      */
     public function ujian()

@@ -8,14 +8,17 @@ use App\Models\Guru;
 use App\Models\GuruKelas;
 use App\Models\Penilaian;
 use App\Models\SiswaKelas;
+use App\Services\ExportNilaiService;
 use App\Support\Toast;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PenilaianController extends BaseAppController implements HasMiddleware
 {
@@ -238,5 +241,29 @@ class PenilaianController extends BaseAppController implements HasMiddleware
         Toast::success('Nilai berhasil disimpan.');
 
         return Redirect::back();
+    }
+
+    /**
+     * Export daftar nilai per kelas per matpel ke .xlsx
+     * (gaya laporan pendidikan Indonesia).
+     */
+    public function export(Request $request): BinaryFileResponse
+    {
+        $guru = $request->user()->guru;
+
+        $guruKelas = GuruKelas::with(['kelas:id,nama', 'matpel:id,name'])
+            ->where('id', $request->integer('guru_kelas_id'))
+            ->where('guru_id', $guru->id)
+            ->firstOrFail();
+
+        $path = app(ExportNilaiService::class)->export($guruKelas);
+
+        $namaFile = 'daftar-nilai-'
+            .Str::slug(($guruKelas->kelas?->nama ?? 'kelas').'-'.($guruKelas->matpel?->name ?? 'matpel'))
+            .'-'.date('Y-m-d').'.xlsx';
+
+        return response()->download($path, $namaFile, [
+            'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ])->deleteFileAfterSend(true);
     }
 }
