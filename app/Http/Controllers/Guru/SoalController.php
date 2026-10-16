@@ -143,10 +143,11 @@ class SoalController extends BaseAppController implements HasMiddleware
         abort_unless($ujian->guru_id === $request->user()->guru?->id, 404);
 
         $matpelId = $ujian->guruKelas->matpel_id;
+        $guruId = $request->user()->guru?->id;
 
         $data = $request->validate([
             'bank_soal_ids' => ['required', 'array', 'min:1'],
-            'bank_soal_ids.*' => [Rule::exists('cbt_bank_soals', 'id')->where('matpel_id', $matpelId)],
+            'bank_soal_ids.*' => [Rule::exists('cbt_bank_soals', 'id')->where('matpel_id', $matpelId)->where('guru_id', $guruId)],
         ]);
 
         $jumlah = $this->bankSoalService->salinKeUjian($ujian, $data['bank_soal_ids']);
@@ -199,6 +200,7 @@ class SoalController extends BaseAppController implements HasMiddleware
 
         $jumlah = $this->bankSoalService->generate($ujian, [
             'matpel_id' => $matpelId,
+            'guru_id' => $request->user()->guru?->id,
             'jumlah' => $data['jumlah'],
             'tipe' => $data['tipe'] ?? null,
             'topik' => $data['topik'] ?? null,
@@ -225,6 +227,7 @@ class SoalController extends BaseAppController implements HasMiddleware
 
         $bankKelompok = KelompokBankSoal::query()
             ->where('matpel_id', $matpelId)
+            ->where('guru_id', $ujian->guru_id)
             ->withCount('soals')
             ->orderBy('nama')
             ->get()
@@ -237,6 +240,7 @@ class SoalController extends BaseAppController implements HasMiddleware
         $bank = BankSoal::query()
             ->with('opsi:id,bank_soal_id,teks,benar')
             ->where('matpel_id', $matpelId)
+            ->where('guru_id', $ujian->guru_id)
             ->orderByDesc('created_at')
             ->get()
             ->map(fn (BankSoal $b): array => [

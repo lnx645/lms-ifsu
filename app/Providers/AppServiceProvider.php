@@ -34,7 +34,9 @@ class AppServiceProvider extends ServiceProvider
             if (in_array($response->statusCode(), [403, 404, 500, 503])) {
                 return $response->render('ErrorPage', [
                     'status' => $response->statusCode(),
-                    'reason' => $response->exception->getMessage(),
+                    // Jangan teruskan pesan exception mentah ke user: membocorkan nama class internal
+                    // (mis. App\Models\GuruKelas). Detail exception tetap tercatat di log server.
+                    'reason' => null,
                 ])->withSharedData();
             }
         });

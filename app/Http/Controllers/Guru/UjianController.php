@@ -132,10 +132,14 @@ class UjianController extends BaseAppController implements HasMiddleware
         }
 
         $penilaianId = $ujian->penilaian_id;
+        $ujianId = $ujian->id;
         $ujian->delete();
 
         if ($penilaianId) {
             Penilaian::where('id', $penilaianId)->delete();
+        } else {
+            // Bersihkan record duplikat lama (dibuat tarikKeNilai sebelum perbaikan 1-ujian-1-penilaian)
+            Penilaian::where('ujian_id', $ujianId)->delete();
         }
 
         Toast::success('Ujian berhasil dihapus.');
@@ -150,17 +154,19 @@ class UjianController extends BaseAppController implements HasMiddleware
     {
         abort_unless($ujian->guru_id === $request->user()->guru?->id, 404);
 
+        $guruId = $request->user()->guru?->id;
+
         $data = $request->validate([
             'pool' => ['required', 'array', 'min:1'],
-            'pool.*.kelompok_bank_soal_id' => ['required', 'integer', 'exists:cbt_kelompok_bank_soals,id'],
+            'pool.*.kelompok_bank_soal_id' => ['required', 'integer', Rule::exists('cbt_kelompok_bank_soals', 'id')->where('guru_id', $guruId)],
             'pool.*.jumlah' => ['required', 'integer', 'min:1', 'max:100'],
         ]);
 
         $ujian->update(['pool_soal' => $data['pool']]);
 
-        // Langsung generate soal acak dari pool
+        // Langsung generate soal acak dari pool (scope ke bank milik guru)
         $bankIds = app(PoolSoalService::class)
-            ->pilihAcak($data['pool']);
+            ->pilihAcak($data['pool'], $guruId);
 
         if (! empty($bankIds)) {
             app(BankSoalService::class)
@@ -352,7 +358,7 @@ class UjianController extends BaseAppController implements HasMiddleware
                 'sudah_lewat' => $sesi->sudahLewat(),
                 'jumlah_peserta' => $sesi->pesertas_count,
                 'jumlah_terisi' => $sesi->pengerjaans_count,
-                'bisa_hapus' => ! $sesi->pengerjaans()->exists(),
+                'bisa_hapus' => $sesi->pengerjaans_count === 0,
             ])
             ->values()
             ->all();
@@ -439,12 +445,23 @@ class UjianController extends BaseAppController implements HasMiddleware
 
         $data = $request->validate([
             'nisn' => ['required', 'array', 'min:1'],
-            'nisn.*' => ['string', 'max:10'],
+            'nisn.*' => ['string', 'max:10', 'exists:siswa,nisn'],
         ]);
+
+        // Pastikan setiap siswa terdaftar di kelas ujian yang diampu guru ini.
+        $guruKelas = $ujian->guru_kelas_id ? GuruKelas::find($ujian->guru_kelas_id) : null;
 
         $sekarang = now();
 
         foreach ($data['nisn'] as $nisn) {
+            $terdaftar = $guruKelas && SiswaKelas::where('siswa_nisn', $nisn)
+                ->where('kelas_id', $guruKelas->kelas_id)
+                ->where('tahun_ajaran_id', $guruKelas->tahun_ajaran_id)
+                ->where('active', true)
+                ->exists();
+
+            abort_unless($terdaftar, 404, 'Siswa tidak terdaftar di kelas ini.');
+
             SesiUjianPeserta::updateOrCreate(
                 ['ujian_id' => $ujian->id, 'siswa_nisn' => $nisn],
                 ['sesi_ujian_id' => $sesi->id, 'created_at' => $sekarang, 'updated_at' => $sekarang],
@@ -709,6 +726,7 @@ class UjianController extends BaseAppController implements HasMiddleware
             'bobot' => $ujian->bobot,
             'aktif' => true,
             'sumber' => $ujian->kategori,
+            'ujian_id' => $ujian->id, // 1 ujian = 1 penilaian (unique di DB)
         ]);
 
         $ujian->update(['penilaian_id' => $penilaian->id]);

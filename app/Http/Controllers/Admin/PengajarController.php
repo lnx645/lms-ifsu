@@ -7,6 +7,7 @@ use App\Models\Guru;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -93,12 +94,14 @@ class PengajarController extends Controller
             'jenis_kelamin' => ['nullable', 'in:L,P'],
             'alamat' => ['nullable', 'string'],
             'is_aktif' => ['boolean'],
+            'foto_profil' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ], [], [
             'nama_lengkap' => 'Nama Lengkap',
             'pendidikan_terakhir' => 'Pendidikan Terakhir',
             'jenis_kelamin' => 'Jenis Kelamin',
             'alamat' => 'Alamat',
             'is_aktif' => 'Aktif',
+            'foto_profil' => 'Foto Profil',
         ]);
 
         if ($request->hasFile('foto_profil')) {
@@ -128,15 +131,20 @@ class PengajarController extends Controller
             'jenis_kelamin' => ['nullable', 'in:L,P'],
             'alamat' => ['nullable', 'string'],
             'is_aktif' => ['boolean'],
+            'foto_profil' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ], [], [
             'nama_lengkap' => 'Nama Lengkap',
             'pendidikan_terakhir' => 'Pendidikan Terakhir',
             'jenis_kelamin' => 'Jenis Kelamin',
             'alamat' => 'Alamat',
             'is_aktif' => 'Aktif',
+            'foto_profil' => 'Foto Profil',
         ]);
 
         if ($request->hasFile('foto_profil')) {
+            if ($pengajar->foto_profil) {
+                Storage::disk('public')->delete($pengajar->foto_profil);
+            }
             $data['foto_profil'] = $request->file('foto_profil')->store('guru', 'public');
         }
 
@@ -162,6 +170,10 @@ class PengajarController extends Controller
             ]);
 
             return Redirect::route('admin.pengajar.index');
+        }
+
+        if ($pengajar->foto_profil) {
+            Storage::disk('public')->delete($pengajar->foto_profil);
         }
 
         $pengajar->delete();

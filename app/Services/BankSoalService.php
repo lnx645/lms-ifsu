@@ -101,6 +101,7 @@ class BankSoalService
     {
         $ids = BankSoal::query()
             ->where('matpel_id', $kriteria['matpel_id'])
+            ->when($kriteria['guru_id'] ?? null, fn ($q, $g) => $q->where('guru_id', $g))
             ->when($kriteria['tipe'] ?? null, fn ($q, $t) => $q->where('tipe', $t))
             ->when($kriteria['topik'] ?? null, fn ($q, $t) => $q->where('topik', $t))
             ->when($kriteria['kesulitan'] ?? null, fn ($q, $k) => $q->where('kesulitan', $k))

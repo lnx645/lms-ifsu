@@ -287,7 +287,7 @@ class MateriController extends BaseAppController implements HasMiddleware
             'guru_kelas_id' => $data['guru_kelas_id'],
             'judul' => $data['judul'],
             'deskripsi' => HtmlSanitizer::clean($data['deskripsi'] ?? null),
-            'konten' => $data['konten'] ?? null,
+            'konten' => HtmlSanitizer::clean($data['konten'] ?? null),
         ])->save();
 
         Toast::success('Materi "'.$materi->judul.'" berhasil diperbarui.');
@@ -344,7 +344,7 @@ class MateriController extends BaseAppController implements HasMiddleware
             'guru_kelas_id' => $data['guru_kelas_id'],
             'judul' => $data['judul'],
             'deskripsi' => HtmlSanitizer::clean($data['deskripsi'] ?? null),
-            'konten' => $data['konten'] ?? null,
+            'konten' => HtmlSanitizer::clean($data['konten'] ?? null),
             'file_path' => $file?->store('materi', 'public'),
             'file_name' => $file?->getClientOriginalName(),
             'file_size' => $file?->getSize() ?? 0,

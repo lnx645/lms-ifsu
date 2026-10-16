@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -170,6 +171,9 @@ class SiswaController extends Controller
         $data = $this->validateSiswa($request, $siswa);
 
         if ($request->hasFile('foto_profil')) {
+            if ($siswa->foto_profil) {
+                Storage::disk('public')->delete($siswa->foto_profil);
+            }
             $data['foto_profil'] = $request->file('foto_profil')->store('siswa', 'public');
         }
 
@@ -245,6 +249,10 @@ class SiswaController extends Controller
             return Redirect::route('admin.siswa.index');
         }
 
+        if ($siswa->foto_profil) {
+            Storage::disk('public')->delete($siswa->foto_profil);
+        }
+
         $siswa->delete();
 
         Inertia::flash('toast', [
@@ -269,6 +277,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => ['nullable', 'in:L,P'],
             'alamat' => ['nullable', 'string'],
             'is_aktif' => ['boolean'],
+            'foto_profil' => ['nullable', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ], [], [
             'nisn' => 'NISN',
             'nis' => 'NIS',
@@ -278,6 +287,7 @@ class SiswaController extends Controller
             'jenis_kelamin' => 'Jenis Kelamin',
             'alamat' => 'Alamat',
             'is_aktif' => 'Aktif',
+            'foto_profil' => 'Foto Profil',
         ]);
     }
 

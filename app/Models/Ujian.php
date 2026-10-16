@@ -123,10 +123,6 @@ class Ujian extends Model
         return $this->hasMany(SesiUjian::class)->orderBy('urutan')->orderBy('id');
     }
 
-    public function beritaAcaras(): HasMany
-    {
-        return $this->hasMany(BeritaAcaraUjian::class);
-    }
 
     /**
      * Siswa butuh remedial bila nilai terbaiknya di bawah KKM.

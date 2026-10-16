@@ -60,7 +60,7 @@ class HasilUjianController extends BaseAppController implements HasMiddleware
 
         // Hanya load relasi yang dipakai: jawabans untuk keyBy, soals+opsi untuk daftar lengkap.
         // (soal.opsi tidak perlu via jawabans lagi karena diambil dari $ujian->soals)
-        $pengerjaan->load(['jawabans', 'pelanggarans', 'siswa']);
+        $pengerjaan->load(['jawabans', 'siswa']);
         $ujian->load(['soals.opsi']);
 
         // Petakan jawaban per soal_id untuk lookup cepat.
@@ -110,10 +110,6 @@ class HasilUjianController extends BaseAppController implements HasMiddleware
                 'submitted_at' => $pengerjaan->submitted_at?->translatedFormat('d M Y H:i'),
             ],
             'jawabans' => $semuaJawaban,
-            'pelanggarans' => $pengerjaan->pelanggarans->map(fn ($p): array => [
-                'jenis' => $p->jenis,
-                'terjadi_at' => $p->terjadi_at?->translatedFormat('d M Y H:i:s'),
-            ])->values(),
         ]);
     }
 
@@ -164,42 +160,50 @@ class HasilUjianController extends BaseAppController implements HasMiddleware
             return Redirect::back();
         }
 
-        // Buat atau ambil Penilaian untuk ujian ini
-        // Standar akademik sempurna: terikat langsung via ujian_id (1 ujian = 1 penilaian)
-        // Tidak bergantung pada nama teks, judul diganti pun tetap 1 record
         $tahunAjaranId = $guruKelas->tahun_ajaran_id;
-        $penilaian = Penilaian::firstOrCreate(
-            ['ujian_id' => $ujian->id],
-            [
-                'nama' => "CBT: {$ujian->judul}",
-                'tahun_ajaran_id' => $tahunAjaranId,
-                'deskripsi' => "Nilai otomatis dari ujian CBT '{$ujian->judul}' ({$ujian->kategori})",
+
+        // 1 ujian = 1 penilaian: pakai record yang dibuat saat ujian dibuat
+        // (UjianController@buatPenilaian via $ujian->penilaian_id).
+        // Fallback ke ujian_id untuk data lama; hanya buat baru bila belum ada.
+        $penilaian = $ujian->penilaian_id
+            ? Penilaian::find($ujian->penilaian_id)
+            : Penilaian::where('ujian_id', $ujian->id)->first();
+
+        if (! $penilaian) {
+            $penilaian = Penilaian::create([
+                'nama' => $this->namaPenilaian($ujian),
+                'deskripsi' => $ujian->deskripsi,
                 'tipe' => 'cbt',
-                'nilai_maks' => 100,
-                'bobot' => 1,
+                'nilai_maks' => $ujian->nilai_maks,
+                'bobot' => $ujian->bobot ?? 1,
                 'aktif' => true,
-                'semester' => null,
-            ]
-        );
-
-        // Update nama jika judul ujian berubah (tetap 1 record)
-        if ($penilaian->nama !== "CBT: {$ujian->judul}") {
-            $penilaian->update(['nama' => "CBT: {$ujian->judul}"]);
+                'sumber' => $ujian->kategori,
+                'tahun_ajaran_id' => $tahunAjaranId,
+                'ujian_id' => $ujian->id,
+            ]);
+            $ujian->update(['penilaian_id' => $penilaian->id]);
+        } else {
+            // Backfill tautan 1:1 untuk record lama (dibuat sebelum ujian_id dipakai)
+            if ($penilaian->ujian_id === null) {
+                $penilaian->update(['ujian_id' => $ujian->id]);
+            }
+            // Samakan nama bila judul/kategori ujian berubah (tetap 1 record)
+            $namaBaru = $this->namaPenilaian($ujian);
+            if ($penilaian->nama !== $namaBaru) {
+                $penilaian->update(['nama' => $namaBaru]);
+            }
         }
-
-        // Hubungkan ke kelas
-        $penilaian->kelas()->syncWithoutDetaching([$guruKelas->kelas_id]);
 
         $jumlah = 0;
         foreach ($pengerjaanByNisn as $p) {
             DetailPenilaian::updateOrCreate(
                 [
                     'penilaian_id' => $penilaian->id,
+                    'guru_kelas_id' => $ujian->guru_kelas_id,
                     'siswa_nisn' => $p->siswa_nisn,
                 ],
                 [
                     'guru_id' => $request->user()->guru->id,
-                    'guru_kelas_id' => $ujian->guru_kelas_id,
                     'tahun_ajaran_id' => $tahunAjaranId,
                     'nilai' => $p->nilai_total ?? 0,
                     'sumber' => 'cbt',
@@ -268,5 +272,13 @@ class HasilUjianController extends BaseAppController implements HasMiddleware
             ],
             'siswas' => $siswas,
         ];
+    }
+
+    /**
+     * Format nama penilaian, sama dengan UjianController@namaPenilaian.
+     */
+    private function namaPenilaian(Ujian $ujian): string
+    {
+        return strtoupper($ujian->kategori).': '.$ujian->judul;
     }
 }

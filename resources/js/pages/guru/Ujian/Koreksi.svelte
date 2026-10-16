@@ -25,7 +25,7 @@
         ujian,
         pengerjaan,
         jawabans,
-        pelanggarans,
+        pelanggarans = [],
     }: {
         ujian: { id: number; judul: string; kategori: string; nilai_maks: number };
         pengerjaan: {

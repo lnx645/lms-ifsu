@@ -62,10 +62,6 @@ class SesiUjian extends Model
         return $this->hasMany(SesiPengawas::class, 'sesi_ujian_id');
     }
 
-    public function beritaAcara(): HasMany
-    {
-        return $this->hasMany(BeritaAcaraUjian::class, 'sesi_ujian_id');
-    }
 
     /**
      * Cari sesi yang dijatahkan untuk siswa pada ujian ini.

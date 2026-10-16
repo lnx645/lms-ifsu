@@ -177,22 +177,32 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
             ->pluck('nilai', 'siswa_nisn');
 
         $siswaList = $this->siswaKelas($ujian);
-        $butuhRemedial = [];
 
+        // Kumpulkan NISN yang butuh remedial dulu (hindari N+1 query).
+        $nisnButuhRemedial = [];
         foreach ($siswaList as $siswa) {
             $nilai = $nilaiTerbaik->get($siswa->nisn);
 
             if ($ujian->kkm !== null && $nilai !== null && $nilai < $ujian->kkm) {
-                $butuhRemedial[] = [
+                $nisnButuhRemedial[$siswa->nisn] = [
                     'nisn' => $siswa->nisn,
                     'nama' => $siswa->nama_lengkap,
                     'nilai' => round((float) $nilai, 1),
-                    'sudah_remedial' => UjianPengerjaan::where('ujian_id', $ujian->id)
-                        ->where('siswa_nisn', $siswa->nisn)
-                        ->where('is_remedial', true)
-                        ->exists(),
                 ];
             }
+        }
+
+        // Satu query untuk semua status remedial.
+        $sudahRemedial = UjianPengerjaan::where('ujian_id', $ujian->id)
+            ->where('is_remedial', true)
+            ->whereIn('siswa_nisn', array_keys($nisnButuhRemedial))
+            ->pluck('siswa_nisn')
+            ->flip();
+
+        $butuhRemedial = [];
+        foreach ($nisnButuhRemedial as $nisn => $row) {
+            $row['sudah_remedial'] = $sudahRemedial->has($nisn);
+            $butuhRemedial[] = $row;
         }
 
         return Inertia::render('guru/Ujian/Remedial', [
@@ -287,7 +297,6 @@ class UjianAkademikController extends BaseAppController implements HasMiddleware
 
         DB::transaction(function () use ($pengerjaan): void {
             $pengerjaan->jawabans()->delete();
-            $pengerjaan->pelanggarans()->delete();
             $pengerjaan->delete();
         });
 

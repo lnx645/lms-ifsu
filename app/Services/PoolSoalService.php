@@ -14,7 +14,7 @@ class PoolSoalService
      * @param  array<array{kelompok_bank_soal_id: int, jumlah: int}>  $pool
      * @return array<int> Daftar bank_soal_id terpilih
      */
-    public function pilihAcak(array $pool): array
+    public function pilihAcak(array $pool, ?int $guruId = null): array
     {
         $terpilih = [];
 
@@ -26,9 +26,14 @@ class PoolSoalService
                 continue;
             }
 
-            // Ambil komposisi kelompok jika ada
-            $kelompok = KelompokBankSoal::find($kelompokId);
-            $komposisi = $kelompok?->komposisi ?? [];
+            // Ambil komposisi kelompok jika ada (scope ke bank milik guru)
+            $kelompok = KelompokBankSoal::where('id', $kelompokId)
+                ->when($guruId !== null, fn ($q) => $q->where('guru_id', $guruId))
+                ->first();
+            if (! $kelompok) {
+                continue;
+            }
+            $komposisi = $kelompok->komposisi ?? [];
             // Jika semua persentase 0, anggap tidak ada komposisi
             $adaKomposisi = collect($komposisi)->contains(fn($c) => ((float)($c["persentase"] ?? 0)) > 0);
 

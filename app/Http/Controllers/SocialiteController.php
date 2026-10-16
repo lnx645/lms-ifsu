@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Support\Toast;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -22,7 +23,7 @@ class SocialiteController extends Controller
     /**
      * Handle the Google authentication callback.
      */
-    public function callback(): RedirectResponse
+    public function callback(Request $request): RedirectResponse
     {
         $googleUser = Socialite::driver('google')->user();
         // cek dulu by email
@@ -44,6 +45,7 @@ class SocialiteController extends Controller
         );
 
         Auth::login($user);
+        $request->session()->regenerate();
         Toast::success('Berhasil login mengunakan akun google!');
 
         return redirect()->intended(route('app.dashboard'));

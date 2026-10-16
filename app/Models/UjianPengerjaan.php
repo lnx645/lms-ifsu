@@ -74,10 +74,6 @@ class UjianPengerjaan extends Model
         return $this->hasMany(JawabanSiswa::class);
     }
 
-    public function pelanggarans(): HasMany
-    {
-        return $this->hasMany(PelanggaranLog::class);
-    }
 
     public function sedangBerlangsung(): bool
     {
