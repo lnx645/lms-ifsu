@@ -126,7 +126,7 @@ class ExportNilaiService
         $guruKelas->loadMissing(['kelas:id,nama', 'matpel:id,name', 'guru:id,nama_lengkap,nip', 'tahunAjaran:id,name']);
 
         $details = DetailPenilaian::with('penilaian:id,nama,nilai_maks')
-            ->where('guru_kelas_id', $guruKelas->id)
+            ->where("guru_id", $guruKelas->guru_id)
             ->get();
 
         $kolom = $details
