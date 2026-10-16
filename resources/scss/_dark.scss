@@ -1,0 +1,942 @@
+// ==========================================
+// DARK MODE — Komprehensif
+// Semua override aktif saat [data-bs-theme="dark"].
+// Gunakan !important hanya saat komponen SCSS juga pakai !important.
+// ==========================================
+
+[data-bs-theme='dark'] {
+    // ── 1. Bootstrap Root Variables (override literal compile-time values) ──
+    --bs-body-bg: #{$gray-900};
+    --bs-body-color: #{$gray-200};
+    --bs-body-bg-rgb: 20, 20, 19;
+    --bs-body-color-rgb: 232, 230, 220;
+    --bs-border-color: #{$gray-700};
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --bs-emphasis-color: #{$white};
+    --bs-secondary-bg: #{$gray-800};
+    --bs-tertiary-bg: rgb(40.5, 40.5, 38.5);
+    --bs-link-color: #{$blue-400};
+    --bs-link-hover-color: #{$blue-300};
+    --bs-code-color: #{$rose-400};
+    --bs-heading-color: inherit;
+
+    // Theme color emphasis overrides (used by text-bg-* utilities)
+    --bs-primary-text-emphasis: #{$blue-300};
+    --bs-secondary-text-emphasis: #{$gray-300};
+    --bs-success-text-emphasis: #{$green-300};
+    --bs-info-text-emphasis: #{$teal-400};
+    --bs-warning-text-emphasis: #{$amber-400};
+    --bs-danger-text-emphasis: #{$rose-400};
+    --bs-light-text-emphasis: #{$gray-900};
+    --bs-dark-text-emphasis: #{$gray-100};
+
+    --bs-primary-bg-subtle: rgb(13, 26, 35.8);
+    --bs-secondary-bg-subtle: rgb(18.8, 18.6, 17.8);
+    --bs-success-bg-subtle: rgb(24, 28, 18.6);
+    --bs-info-bg-subtle: rgb(37.6, 41.8, 40.4);
+    --bs-warning-bg-subtle: rgb(42.4, 32.4, 25.4);
+    --bs-danger-bg-subtle: rgb(39.2, 20.4, 26.8);
+    --bs-light-bg-subtle: #{$gray-800};
+    --bs-dark-bg-subtle: rgb(30.5, 30.5, 29);
+
+    --bs-primary-border-subtle: rgb(39, 78, 107.4);
+    --bs-secondary-border-subtle: rgb(56.4, 55.8, 53.4);
+    --bs-success-border-subtle: rgb(72, 84, 55.8);
+    --bs-info-border-subtle: rgb(112.8, 125.4, 121.2);
+    --bs-warning-border-subtle: rgb(127.2, 97.2, 76.2);
+    --bs-danger-border-subtle: rgb(117.6, 61.2, 80.4);
+    --bs-light-border-subtle: #{$gray-700};
+    --bs-dark-border-subtle: #{$gray-800};
+
+    // ── 2. App Shell Tokens ──────────────────────────────
+    --app-shell-primary: #6cb2e6;
+    --app-shell-primary-dark: #8fc8ee;
+    --app-shell-accent: #f0c674;
+    --app-shell-accent-soft: rgba(240, 198, 116, 0.15);
+    --app-shell-app-bg: #0f1117;
+    --app-shell-surface: #181b24;
+    --app-shell-border: #272a37;
+    --app-shell-text: #e6e8ee;
+    --app-shell-text-muted: #9aa1b1;
+    --app-shell-primary-soft: rgba(108, 178, 230, 0.15);
+    --app-shell-danger: #e07070;
+    --app-shell-danger-soft: rgba(224, 112, 112, 0.12);
+    --app-shell-success: #8cb87a;
+    --app-shell-success-soft: rgba(140, 184, 122, 0.12);
+    --app-shell-info: #7abfb8;
+    --app-shell-info-soft: rgba(122, 191, 184, 0.12);
+
+    // ── 3. Theme Utility Variables ────────────────────────
+    --color-primary: #6cb2e6;
+    --color-secondary: #9ca3af;
+    --color-accent: #8fc8ee;
+    --color-text-on-primary: #ffffff;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #c8c8c8;
+    --color-text-muted: #9ca3af;
+    --color-bg: #{$gray-900};
+    --color-bg-card: #{$gray-800};
+    --color-bg-overlay: #{$gray-700};
+    --color-border: #{$gray-700};
+    --color-divider: #1f2230;
+
+    // ── 4. Invitnesia Legacy Variables ────────────────────
+    --inv-background: #{$gray-900};
+    --inv-dark: #{$gray-200};
+    --inv-white: #{$gray-900};
+    --inv-overlay: rgba(0, 0, 0, 0.65);
+    --inv-overlay-fill: #{$gray-900};
+    --inv-gray-25: #{$gray-800};
+    --inv-gray-50: #1f2230;
+    --inv-gray-100: #{$gray-700};
+    --inv-gray-400: #6b7280;
+    --inv-gray-500: #9ca3af;
+    --inv-gray-600: #b0b0b0;
+    --inv-gray-700: #d1d5db;
+    --inv-gray-800: #e5e7eb;
+    --inv-gray-900: #f3f4f6;
+    --inv-primary-50: rgba(108, 178, 230, 0.15);
+    --inv-primary-100: rgba(108, 178, 230, 0.25);
+    --inv-primary-500: #6cb2e6;
+    --inv-primary-700: #8fc8ee;
+    --inv-secondary-50: rgba(156, 163, 175, 0.12);
+    --inv-secondary-100: rgba(156, 163, 175, 0.2);
+    --inv-secondary-500: #9ca3af;
+    --inv-secondary-700: #d1d5db;
+    --inv-success-50: rgba(140, 184, 122, 0.12);
+    --inv-success-100: rgba(140, 184, 122, 0.2);
+    --inv-success-500: #8cb87a;
+    --inv-success-700: #a8d494;
+    --inv-info-50: rgba(122, 191, 184, 0.12);
+    --inv-info-100: rgba(122, 191, 184, 0.2);
+    --inv-info-500: #7abfb8;
+    --inv-info-700: #96d4ce;
+    --inv-warning-50: rgba(224, 184, 138, 0.12);
+    --inv-warning-100: rgba(224, 184, 138, 0.2);
+    --inv-warning-500: #e0b88a;
+    --inv-warning-700: #eaca9e;
+    --inv-danger-50: rgba(224, 112, 112, 0.12);
+    --inv-danger-100: rgba(224, 112, 112, 0.2);
+    --inv-danger-500: #e07070;
+    --inv-danger-700: #ea9090;
+
+    // ── 5. Body & Base ───────────────────────────────────
+    color: var(--bs-body-color);
+
+    // ── 6. Cards (override _cards.scss hardcoded $white) ─
+    .card {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .card-header {
+        background-color: var(--app-shell-surface) !important;
+        border-bottom-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+    }
+
+    .card-primary {
+        border-color: var(--app-shell-primary) !important;
+
+        .card-header {
+            background-color: rgba(108, 178, 230, 0.1) !important;
+            border-bottom-color: rgba(108, 178, 230, 0.2) !important;
+            color: #8fc8ee !important;
+        }
+    }
+
+    .card-success .card-header {
+        background-color: rgba(140, 184, 122, 0.1) !important;
+        border-bottom-color: rgba(140, 184, 122, 0.2) !important;
+        color: #a8d494 !important;
+    }
+
+    .card-danger .card-header {
+        background-color: rgba(224, 112, 112, 0.1) !important;
+        border-bottom-color: rgba(224, 112, 112, 0.2) !important;
+        color: #ea9090 !important;
+    }
+
+    .card-warning .card-header {
+        background-color: rgba(224, 184, 138, 0.1) !important;
+        border-bottom-color: rgba(224, 184, 138, 0.2) !important;
+        color: #eaca9e !important;
+    }
+
+    .card-info .card-header {
+        background-color: rgba(122, 191, 184, 0.1) !important;
+        border-bottom-color: rgba(122, 191, 184, 0.2) !important;
+        color: #96d4ce !important;
+    }
+
+    // ── 7. Tables (override _tables.scss hardcoded values) ─
+    .table {
+        background-color: var(--app-shell-surface) !important;
+
+        thead {
+            background-color: rgba(42, 45, 58, 0.6) !important;
+
+            th {
+                background-color: rgba(42, 45, 58, 0.6) !important;
+                color: var(--app-shell-text-muted) !important;
+                border-bottom-color: var(--app-shell-border) !important;
+            }
+        }
+
+        tbody {
+            background-color: var(--app-shell-surface) !important;
+
+            td {
+                background-color: var(--app-shell-surface) !important;
+                color: var(--app-shell-text) !important;
+                border-bottom-color: var(--app-shell-border) !important;
+            }
+
+            tr:hover td {
+                background-color: rgba(108, 178, 230, 0.08) !important;
+            }
+        }
+
+        tfoot th {
+            background-color: rgba(42, 45, 58, 0.6) !important;
+            color: var(--app-shell-text-muted) !important;
+        }
+
+        .table-img {
+            border-color: var(--app-shell-border) !important;
+            background-color: rgba(42, 45, 58, 0.6) !important;
+        }
+    }
+
+    .empty-data-alert h5,
+    .empty-data-description h5 {
+        color: var(--app-shell-text) !important;
+    }
+
+    .empty-data-alert p,
+    .empty-data-description p {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    // ── 8. Forms (override _forms.scss hardcoded $white) ───
+    .form-control,
+    .form-select {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+
+        &:focus {
+            background-color: var(--app-shell-surface) !important;
+            border-color: var(--app-shell-primary) !important;
+            color: var(--app-shell-text) !important;
+        }
+
+        &::placeholder {
+            color: var(--app-shell-text-muted) !important;
+        }
+    }
+
+    .form-check-input {
+        border-color: var(--app-shell-border) !important;
+        background-color: var(--app-shell-surface) !important;
+
+        &:checked {
+            background-color: var(--app-shell-primary) !important;
+            border-color: var(--app-shell-primary) !important;
+        }
+    }
+
+    .form-label {
+        color: var(--app-shell-text) !important;
+    }
+
+    .input-group-text {
+        background-color: rgba(42, 45, 58, 0.6) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+    }
+
+    // ── 9. Modals (override _modals.scss hardcoded $white) ─
+    .modal-backdrop.show {
+        background-color: rgba(0, 0, 0, 0.7) !important;
+    }
+
+    .modal-content {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .modal-header {
+        background-color: var(--app-shell-surface) !important;
+        border-bottom-color: var(--app-shell-border) !important;
+
+        .btn-close {
+            background-color: rgba(42, 45, 58, 0.8) !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23e0e0e0'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;
+
+            &:hover {
+                background-color: rgba(55, 58, 72, 0.9) !important;
+            }
+
+            &:active {
+                background-color: rgba(75, 78, 92, 0.9) !important;
+            }
+        }
+    }
+
+    .modal-title {
+        color: var(--app-shell-text) !important;
+    }
+
+    .modal-footer {
+        border-top-color: var(--app-shell-border) !important;
+    }
+
+    // ── 10. Dropdowns (override _dropdowns.scss) ──────────
+    .dropdown-menu {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .dropdown-item {
+        color: var(--app-shell-text) !important;
+
+        &:hover,
+        &:focus {
+            background-color: rgba(108, 178, 230, 0.1) !important;
+            color: var(--app-shell-text) !important;
+        }
+
+        &:active {
+            background-color: var(--app-shell-primary) !important;
+            color: #ffffff !important;
+        }
+    }
+
+    // ── 11. Navs & Tabs (override _navs.scss !important) ──
+    .nav-tabs {
+        border-bottom-color: var(--app-shell-border) !important;
+
+        .nav-link {
+            color: var(--app-shell-text-muted) !important;
+
+            &:hover {
+                color: var(--app-shell-primary) !important;
+            }
+
+            &.active {
+                color: var(--app-shell-primary) !important;
+                background: transparent !important;
+                border-color: transparent !important;
+            }
+        }
+    }
+
+    .nav-pills {
+        background-color: rgba(42, 45, 58, 0.5) !important;
+        border-color: var(--app-shell-border) !important;
+
+        .nav-link {
+            color: var(--app-shell-text-muted) !important;
+            background: transparent !important;
+
+            &:hover {
+                color: var(--app-shell-text) !important;
+                background: rgba(255, 255, 255, 0.05) !important;
+            }
+
+            &.active {
+                background-color: var(--app-shell-surface) !important;
+                color: var(--app-shell-primary) !important;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+            }
+        }
+    }
+
+    // ── 12. Accordions (override _accordions.scss) ────────
+    .accordion {
+        --bs-accordion-color: #{$gray-200};
+        --bs-accordion-bg: #{$gray-800};
+        --bs-accordion-border-color: #{$gray-700};
+        --bs-accordion-btn-color: #{$gray-200};
+        --bs-accordion-btn-bg: #{$gray-800};
+        --bs-accordion-active-color: #{$blue-400};
+        --bs-accordion-active-bg: rgba(108, 178, 230, 0.08);
+    }
+
+    .accordion-item {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .accordion-button {
+        background-color: var(--app-shell-surface) !important;
+        color: var(--app-shell-text) !important;
+        box-shadow: inset 0 -1px 0 var(--app-shell-border) !important;
+
+        &:not(.collapsed) {
+            background-color: rgba(108, 178, 230, 0.08) !important;
+            color: var(--app-shell-primary) !important;
+            box-shadow: inset 0 -1px 0 rgba(108, 178, 230, 0.2) !important;
+        }
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.05) !important;
+        }
+
+        &:focus {
+            box-shadow: inset 0 -1px 0 var(--app-shell-border),
+                0 0 0 3px rgba(108, 178, 230, 0.2) !important;
+        }
+
+        &::after {
+            filter: invert(0.7);
+        }
+    }
+
+    .accordion-collapse {
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .accordion-body {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    .accordion-primary .accordion-button:not(.collapsed) {
+        background-color: rgba(108, 178, 230, 0.08) !important;
+        color: #8fc8ee !important;
+    }
+
+    .accordion-success .accordion-button:not(.collapsed) {
+        background-color: rgba(140, 184, 122, 0.08) !important;
+        color: #a8d494 !important;
+    }
+
+    .accordion-danger .accordion-button:not(.collapsed) {
+        background-color: rgba(224, 112, 112, 0.08) !important;
+        color: #ea9090 !important;
+    }
+
+    .accordion-warning .accordion-button:not(.collapsed) {
+        background-color: rgba(224, 184, 138, 0.08) !important;
+        color: #eaca9e !important;
+    }
+
+    .accordion-info .accordion-button:not(.collapsed) {
+        background-color: rgba(122, 191, 184, 0.08) !important;
+        color: #96d4ce !important;
+    }
+
+    .accordion-secondary .accordion-button:not(.collapsed) {
+        background-color: rgba(156, 163, 175, 0.08) !important;
+        color: #d1d5db !important;
+    }
+
+    // ── 13. Alerts (override _alerts.scss) ────────────────
+    .alert-primary {
+        background-color: rgba(108, 178, 230, 0.12) !important;
+        border-color: rgba(108, 178, 230, 0.25) !important;
+        color: #8fc8ee !important;
+    }
+
+    .alert-secondary {
+        background-color: rgba(156, 163, 175, 0.12) !important;
+        border-color: rgba(156, 163, 175, 0.25) !important;
+        color: #d1d5db !important;
+    }
+
+    .alert-success {
+        background-color: rgba(140, 184, 122, 0.12) !important;
+        border-color: rgba(140, 184, 122, 0.25) !important;
+        color: #a8d494 !important;
+    }
+
+    .alert-info {
+        background-color: rgba(122, 191, 184, 0.12) !important;
+        border-color: rgba(122, 191, 184, 0.25) !important;
+        color: #96d4ce !important;
+    }
+
+    .alert-warning {
+        background-color: rgba(224, 184, 138, 0.12) !important;
+        border-color: rgba(224, 184, 138, 0.25) !important;
+        color: #eaca9e !important;
+    }
+
+    .alert-danger {
+        background-color: rgba(224, 112, 112, 0.12) !important;
+        border-color: rgba(224, 112, 112, 0.25) !important;
+        color: #ea9090 !important;
+    }
+
+    // ── 14. List Groups (override _list-groups.scss) ──────
+    .list-group-item {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.06) !important;
+        }
+
+        &.active {
+            background-color: var(--app-shell-primary) !important;
+            border-color: var(--app-shell-primary) !important;
+            color: #ffffff !important;
+        }
+    }
+
+    // ── 15. Pagination (override _pagination.scss) ────────
+    .page-link {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text-muted) !important;
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.08) !important;
+            color: var(--app-shell-primary) !important;
+            border-color: var(--app-shell-border) !important;
+        }
+
+        &:focus-visible {
+            border-color: var(--app-shell-primary) !important;
+        }
+    }
+
+    .page-item.active .page-link {
+        background-color: var(--app-shell-primary) !important;
+        border-color: var(--app-shell-primary) !important;
+        color: #ffffff !important;
+    }
+
+    .page-item.disabled .page-link {
+        background-color: rgba(42, 45, 58, 0.5) !important;
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    // ── 16. Badges (override _badges.scss hardcoded hex) ──
+    .badge-primary {
+        background-color: var(--app-shell-primary) !important;
+        color: #ffffff !important;
+    }
+
+    .badge-secondary {
+        background-color: #7a7872 !important;
+        color: #ffffff !important;
+    }
+
+    .badge-success {
+        background-color: #8cb87a !important;
+        color: #ffffff !important;
+    }
+
+    .badge-danger {
+        background-color: #e07070 !important;
+        color: #ffffff !important;
+    }
+
+    .badge-warning {
+        background-color: #e0b88a !important;
+        color: #1a1d27 !important;
+    }
+
+    .badge-info {
+        background-color: #7abfb8 !important;
+        color: #0d1a24 !important;
+    }
+
+    .badge-dark {
+        background-color: #373a48 !important;
+        color: #e0e0e0 !important;
+    }
+
+    .badge-light {
+        background-color: #2a2d3a !important;
+        color: #e0e0e0 !important;
+    }
+
+    // Bootstrap .rounded-pill badges on dark bg need more pop
+    .badge.rounded-pill {
+        font-weight: 600;
+    }
+
+    // ── 16b. text-bg-* (override hardcoded text colors) ───
+    .text-bg-primary {
+        color: #ffffff !important;
+        background-color: rgba(108, 178, 230, 0.9) !important;
+    }
+
+    .text-bg-secondary {
+        color: #ffffff !important;
+        background-color: rgba(122, 120, 114, 0.85) !important;
+    }
+
+    .text-bg-success {
+        color: #ffffff !important;
+        background-color: rgba(140, 184, 122, 0.85) !important;
+    }
+
+    .text-bg-info {
+        color: #0d1a24 !important;
+        background-color: rgba(122, 191, 184, 0.85) !important;
+    }
+
+    .text-bg-warning {
+        color: #1a1d27 !important;
+        background-color: rgba(224, 184, 138, 0.85) !important;
+    }
+
+    .text-bg-danger {
+        color: #ffffff !important;
+        background-color: rgba(224, 112, 112, 0.85) !important;
+    }
+
+    .text-bg-dark {
+        color: #e0e0e0 !important;
+        background-color: #373a48 !important;
+    }
+
+    .text-bg-light {
+        color: #e0e0e0 !important;
+        background-color: #2a2d3a !important;
+    }
+
+    .text-bg-body-secondary {
+        color: #e0e0e0 !important;
+        background-color: rgba(42, 45, 58, 0.6) !important;
+    }
+
+    // ── 16c. Bootstrap Icons — boost contrast on dark bg ──
+    .bi {
+        opacity: 0.9;
+    }
+
+    // Status icons next to text — more visible
+    .text-primary .bi,
+    .text-success .bi,
+    .text-danger .bi,
+    .text-warning .bi,
+    .text-info .bi {
+        opacity: 1;
+    }
+
+    // ── 17. Progress ──────────────────────────────────────
+    .progress {
+        background-color: rgba(42, 45, 58, 0.6) !important;
+    }
+
+    // ── 18. Buttons (override _buttons.scss hardcoded) ────
+    .btn-secondary {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+        --bs-btn-bg: #{$gray-800};
+        --bs-btn-border-color: #{$gray-700};
+        --bs-btn-color: #{$gray-200};
+        --bs-btn-hover-bg: rgba(108, 178, 230, 0.1);
+        --bs-btn-hover-border-color: #{$gray-700};
+        --bs-btn-hover-color: #{$gray-200};
+        --bs-btn-active-bg: rgba(42, 45, 58, 0.8);
+        --bs-btn-disabled-bg: #{$gray-800};
+        --bs-btn-disabled-border-color: #{$gray-700};
+        --bs-btn-disabled-color: #{$gray-500};
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.1) !important;
+            border-color: var(--app-shell-border) !important;
+            color: var(--app-shell-text) !important;
+        }
+
+        &:active {
+            background-color: rgba(42, 45, 58, 0.8) !important;
+        }
+    }
+
+    .btn-outline-secondary {
+        color: var(--app-shell-text) !important;
+        border-color: var(--app-shell-border) !important;
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.1) !important;
+            color: var(--app-shell-text) !important;
+            border-color: var(--app-shell-primary) !important;
+        }
+    }
+
+    .btn-light {
+        background-color: rgba(42, 45, 58, 0.6) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+
+        &:hover {
+            background-color: rgba(55, 58, 72, 0.8) !important;
+            border-color: var(--app-shell-border) !important;
+            color: var(--app-shell-text) !important;
+        }
+    }
+
+    .btn-outline-light {
+        color: var(--app-shell-text) !important;
+        border-color: var(--app-shell-border) !important;
+
+        &:hover {
+            background-color: rgba(108, 178, 230, 0.1) !important;
+            color: var(--app-shell-text) !important;
+        }
+    }
+
+    // ── 19. Breadcrumbs ───────────────────────────────────
+    .breadcrumb .breadcrumb-item a {
+        color: var(--app-shell-text-muted) !important;
+
+        &:hover {
+            color: var(--app-shell-primary) !important;
+        }
+    }
+
+    .breadcrumb .breadcrumb-item.active {
+        color: var(--app-shell-text) !important;
+    }
+
+    .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    // ── 21. Offcanvas & Toasts ───────────────────────────
+    .offcanvas {
+        background-color: var(--app-shell-surface) !important;
+    }
+
+    .offcanvas-header {
+        border-bottom-color: var(--app-shell-border) !important;
+
+        .btn-close {
+            filter: invert(0.7);
+        }
+    }
+
+    .offcanvas-title {
+        color: var(--app-shell-text) !important;
+    }
+
+    .offcanvas-body {
+        color: var(--app-shell-text) !important;
+    }
+
+    .offcanvas-footer {
+        border-top-color: var(--app-shell-border) !important;
+    }
+
+    .toast {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+    }
+
+    .toast-header {
+        background-color: var(--app-shell-surface) !important;
+        border-bottom-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+    }
+
+    // ── 22. Tooltips & Popovers ──────────────────────────
+    .tooltip-inner {
+        background-color: var(--app-shell-text) !important;
+        color: var(--app-shell-surface) !important;
+    }
+
+    .popover {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .popover-header {
+        background-color: var(--app-shell-surface) !important;
+        border-bottom-color: var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+    }
+
+    .popover-body {
+        color: var(--app-shell-text) !important;
+    }
+
+    // ── 23. Sonner / Toast Notifications ──────────────────
+    [data-sonner-toast] {
+        background: var(--app-shell-surface) !important;
+        border: 1px solid var(--app-shell-border) !important;
+        color: var(--app-shell-text) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+
+        [data-title] {
+            color: var(--app-shell-text) !important;
+        }
+
+        [data-description] {
+            color: var(--app-shell-text-muted) !important;
+        }
+
+        [data-cancel] {
+            background-color: rgba(42, 45, 58, 0.6) !important;
+            color: var(--app-shell-text) !important;
+            border-color: var(--app-shell-border) !important;
+
+            &:hover {
+                background-color: rgba(55, 58, 72, 0.8) !important;
+            }
+        }
+
+        [data-close-button] {
+            background-color: rgba(42, 45, 58, 0.6) !important;
+            color: var(--app-shell-text-muted) !important;
+
+            &:hover {
+                background-color: rgba(55, 58, 72, 0.8) !important;
+            }
+        }
+    }
+
+    // ── 24. Scrollbar ─────────────────────────────────────
+    ::-webkit-scrollbar-thumb {
+        background-color: rgba(156, 163, 175, 0.3);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(156, 163, 175, 0.5);
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+
+    // ── 25. Bootstrap Utility Overrides ───────────────────
+    .bg-white {
+        background-color: var(--app-shell-surface) !important;
+    }
+
+    .bg-body {
+        background-color: var(--app-shell-surface) !important;
+    }
+
+    .bg-light {
+        background-color: rgba(42, 45, 58, 0.6) !important;
+    }
+
+    .bg-body-secondary {
+        background-color: rgba(42, 45, 58, 0.6) !important;
+    }
+
+    .text-dark {
+        color: var(--app-shell-text) !important;
+    }
+
+    .text-body {
+        color: var(--app-shell-text) !important;
+    }
+
+    .text-muted {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    .text-body-secondary {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    .text-body-tertiary {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    .border {
+        border-color: var(--app-shell-border) !important;
+    }
+
+    .border-top {
+        border-top-color: var(--app-shell-border) !important;
+    }
+
+    .border-bottom {
+        border-bottom-color: var(--app-shell-border) !important;
+    }
+
+    .border-start {
+        border-left-color: var(--app-shell-border) !important;
+    }
+
+    .border-end {
+        border-right-color: var(--app-shell-border) !important;
+    }
+
+    .divider {
+        border-color: var(--app-shell-border) !important;
+    }
+
+    hr {
+        border-color: var(--app-shell-border) !important;
+        opacity: 0.5;
+    }
+
+    .table-striped > tbody > tr:nth-of-type(odd) > td {
+        background-color: rgba(42, 45, 58, 0.3) !important;
+    }
+
+    .table-hover > tbody > tr:hover > td {
+        background-color: rgba(108, 178, 230, 0.08) !important;
+    }
+
+    // ── 26. Link Colors ──────────────────────────────────
+    a {
+        color: #8fc8ee;
+    }
+
+    a:hover {
+        color: #6cb2e6;
+    }
+
+    // ── 27. Headings ─────────────────────────────────────
+    h1, h2, h3, h4, h5, h6,
+    .h1, .h2, .h3, .h4, .h5, .h6 {
+        color: var(--app-shell-text);
+    }
+
+    // ── 28. Code & Pre ───────────────────────────────────
+    code {
+        background-color: rgba(42, 45, 58, 0.8);
+        color: #e07070;
+    }
+
+    pre {
+        background-color: rgba(42, 45, 58, 0.8);
+        color: var(--app-shell-text);
+        border-color: var(--app-shell-border);
+    }
+
+    // ── 29. Page Header ──────────────────────────────────
+    .page-header .title {
+        color: var(--app-shell-text);
+    }
+
+    .page-header .subtitle {
+        color: var(--app-shell-text-muted);
+    }
+
+    // ── 30. Placeholder ──────────────────────────────────
+    .placeholder {
+        background-color: rgba(42, 45, 58, 0.6);
+    }
+
+    // ── 31. Spinner ──────────────────────────────────────
+    .spinner-border-secondary {
+        color: var(--app-shell-text-muted) !important;
+    }
+
+    // ── 32. Auth pages ───────────────────────────────────
+    .login-card,
+    .auth-card {
+        background-color: var(--app-shell-surface) !important;
+        border-color: var(--app-shell-border) !important;
+    }
+
+    // ── 33. Svelte-Select (app-select) ───────────────────
+    .app-select .svelte-select-list {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+    }
+}

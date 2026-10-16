@@ -1,0 +1,240 @@
+@forward 'custom';
+
+@font-face {
+    font-family: 'Invitnesia';
+    src: url('./example-font.woff2');
+}
+
+// ══════════════════════════════════════
+// DESIGN SYSTEM CSS VARIABLES (runtime)
+// Dipakai oleh utilitas tema di bawah (.color-*, .surface-*,
+// .font-*, .gradient-*). Didefinisikan di sini agar utilitas
+// tersebut benar-benar berwarna (sebelumnya no-op karena var
+// tidak dideklarasikan).
+// ══════════════════════════════════════
+:root {
+    // ── Brand / Semantic (Brand blue) ──
+    --color-primary: #4182b3; // Brand (primary)
+    --color-secondary: #5E5D59; // Slate Light
+    --color-accent: #2b567a; // Brand 700 (warm accent)
+
+    // ── Text (Anthropic Slate ramp) ──
+    --color-text-on-primary: #ffffff;
+    --color-text-primary: #141413; // Slate Dark (heading)
+    --color-text-secondary: #3D3D3A; // Slate Medium (body)
+    --color-text-muted: #5E5D59; // Slate Light
+
+    // ── Surfaces & Structure (Anthropic Ivory/Cloud ramp) ──
+    --color-bg: #FAF9F5; // Ivory Light (canvas)
+    --color-bg-card: #ffffff; // Card surface
+    --color-bg-overlay: #E8E6DC; // Ivory Dark (muted surface)
+    --color-border: #E8E6DC; // Ivory Dark (border)
+    --color-divider: #F0EEE6; // Ivory Medium (divider)
+
+    // ── Font Families ──
+    --font-heading: Invitnesia;
+    --font-heading-fallback: Georgia, serif;
+    --font-body: Invitnesia;
+    --font-body-fallback:Invitnesia;
+    --font-accent: 'Great Vibes', cursive;
+    --font-accent-fallback: cursive;
+    --font-script: 'Great Vibes', cursive;
+    --font-script-fallback: cursive;
+    --font-arabic: 'Amiri', 'Scheherazade New', 'Geeza Pro', serif;
+    --font-arabic-fallback: serif;
+}
+
+// ══════════════════════════════════════
+// THEME UTILITIES (tanpa konflik Bootstrap)
+// ══════════════════════════════════════
+//
+// Bootstrap: .text-* .bg-* .border-*
+// Theme:     .font-* .color-* .surface-* .line-*
+// ══════════════════════════════════════
+
+// ── Font Family ──
+.font-heading {
+    font-family: var(--font-heading) !important;
+}
+
+.font-heading-fallback {
+    font-family: var(--font-heading-fallback) !important;
+}
+
+.font-body {
+    font-family: var(--font-body) !important;
+}
+
+.font-body-fallback {
+    font-family: var(--font-body-fallback) !important;
+}
+
+.font-accent {
+    font-family: var(--font-accent) !important;
+}
+
+.font-accent-fallback {
+    font-family: var(--font-accent-fallback) !important;
+}
+
+.font-script {
+    font-family: var(--font-script) !important;
+}
+
+.font-script-fallback {
+    font-family: var(--font-script-fallback) !important;
+}
+
+.font-arabic {
+    font-family: var(--font-arabic) !important;
+}
+
+.font-arabic-fallback {
+    font-family: var(--font-arabic-fallback) !important;
+}
+
+// ── Text Color ──
+.color-primary {
+    color: var(--color-primary) !important;
+}
+
+.color-secondary {
+    color: var(--color-secondary) !important;
+}
+
+.color-accent {
+    color: var(--color-accent) !important;
+}
+
+.color-surface {
+    color: var(--color-text-on-primary) !important;
+}
+
+.color-muted {
+    color: var(--color-text-muted) !important;
+}
+
+.color-heading {
+    color: var(--color-text-primary) !important;
+}
+
+.color-body {
+    color: var(--color-text-secondary) !important;
+}
+
+// ── Background ──
+.surface-primary {
+    background-color: var(--color-primary) !important;
+}
+
+.surface-secondary {
+    background-color: var(--color-secondary) !important;
+}
+
+.surface-accent {
+    background-color: var(--color-accent) !important;
+}
+
+.surface-surface {
+    background-color: var(--color-bg-card) !important;
+}
+
+.surface-muted {
+    background-color: var(--color-bg-overlay) !important;
+}
+
+.surface-background {
+    background-color: var(--color-bg) !important;
+}
+
+// ── Border Color ──
+.line-primary {
+    border-color: var(--color-primary) !important;
+}
+
+.line-secondary {
+    border-color: var(--color-secondary) !important;
+}
+
+.line-accent {
+    border-color: var(--color-accent) !important;
+}
+
+.line-surface {
+    border-color: var(--color-border) !important;
+}
+
+.line-muted {
+    border-color: var(--color-divider) !important;
+}
+
+// ── SVG ──
+.fill-primary {
+    fill: var(--color-primary) !important;
+}
+
+.fill-secondary {
+    fill: var(--color-secondary) !important;
+}
+
+.fill-accent {
+    fill: var(--color-accent) !important;
+}
+
+.stroke-primary {
+    stroke: var(--color-primary) !important;
+}
+
+.stroke-secondary {
+    stroke: var(--color-secondary) !important;
+}
+
+.stroke-accent {
+    stroke: var(--color-accent) !important;
+}
+
+// ── Combined ──
+.heading {
+    font-family: var(--font-heading) !important;
+    color: var(--color-text-primary) !important;
+}
+
+.body-text {
+    font-family: var(--font-body) !important;
+    color: var(--color-text-secondary) !important;
+}
+
+.accent-text {
+    font-family: var(--font-accent) !important;
+    color: var(--color-accent) !important;
+}
+
+.script-text {
+    font-family: var(--font-script) !important;
+    color: var(--color-accent) !important;
+}
+
+.arabic-text {
+    font-family: var(--font-arabic) !important;
+    direction: rtl !important;
+}
+
+// ── Gradient ──
+.surface-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent)) !important;
+}
+
+.surface-gradient-secondary {
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-primary)) !important;
+}
+
+.color-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+body {
+    font-family: var(--font-body);
+}

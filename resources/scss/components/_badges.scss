@@ -1,0 +1,60 @@
+// â”€â”€ 7.15. Badge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.badge {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    padding: 0.3em 0.55em;
+    border-radius: $border-radius-sm;
+}
+
+// Badge per-variant â€” pastikan teks kontras
+.badge-primary {
+    background-color: $primary;
+    color: $white;
+}
+.badge-secondary {
+    background-color: $secondary;
+    color: $white;
+}
+.badge-success {
+    background-color: $success;
+    color: $white;
+}
+.badge-danger {
+    background-color: $danger;
+    color: $white;
+}
+.badge-warning {
+    background-color: $warning;
+    color: $slate-700;
+}
+.badge-info {
+    background-color: $info;
+    color: $white;
+}
+.badge-dark {
+    background-color: $dark;
+    color: $white;
+}
+.badge-light {
+    background-color: $light;
+    color: $slate-700;
+}
+
+.badge-sm {
+    font-size: 0.625rem;
+    padding: 0.2em 0.4em;
+    border-radius: $border-radius-sm;
+}
+
+.badge-md {
+    font-size: 0.75rem;
+    padding: 0.3em 0.55em;
+    border-radius: $border-radius-sm;
+}
+
+.badge-lg {
+    font-size: 0.875rem;
+    padding: 0.35em 0.65em;
+    border-radius: $border-radius;
+}

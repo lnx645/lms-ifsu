@@ -1,0 +1,203 @@
+// ==========================================
+// 8. UTILITY CLASSES (Semantic Centralized)
+// ==========================================
+
+.bg-primary-50 {
+    background-color: $primary-50 !important;
+}
+.bg-primary-100 {
+    background-color: $primary-100 !important;
+}
+.bg-secondary-50 {
+    background-color: $secondary-50 !important;
+}
+.bg-secondary-100 {
+    background-color: $secondary-100 !important;
+}
+.bg-success-50 {
+    background-color: $success-50 !important;
+}
+.bg-warning-50 {
+    background-color: $warning-50 !important;
+}
+.bg-danger-50 {
+    background-color: $danger-50 !important;
+}
+.bg-info-50 {
+    background-color: $info-50 !important;
+}
+.bg-light {
+    background-color: $light !important;
+}
+
+.text-primary-500 {
+    color: $primary !important;
+}
+.text-primary-700 {
+    color: $primary-700 !important;
+}
+.text-secondary-500 {
+    color: $secondary !important;
+}
+.text-secondary-700 {
+    color: $secondary-700 !important;
+}
+.text-success-500 {
+    color: $success !important;
+}
+.text-success-700 {
+    color: $success-700 !important;
+}
+.text-warning-500 {
+    color: $warning !important;
+}
+.text-warning-700 {
+    color: $warning-700 !important;
+}
+.text-danger-500 {
+    color: $danger !important;
+}
+.text-danger-700 {
+    color: $danger-700 !important;
+}
+.text-info-500 {
+    color: $info !important;
+}
+.text-info-700 {
+    color: $info-700 !important;
+}
+.text-gray-400 {
+    color: $slate-400 !important;
+}
+.text-gray-500 {
+    color: $gray-500 !important;
+}
+.text-gray-600 {
+    color: $gray-600 !important;
+}
+.text-gray-700 {
+    color: $gray-700 !important;
+}
+.text-gray-800 {
+    color: $gray-800 !important;
+}
+.text-gray-900 {
+    color: $slate-700 !important;
+}
+
+.bg-gradient-gray {
+    background: $gradient-gray !important;
+}
+.bg-gradient-light-primary {
+    background: $gradient-light-primary !important;
+}
+.bg-gradient-pale-secondary {
+    background: $gradient-pale-secondary !important;
+}
+.bg-gradient-celebration {
+    background: $gradient-celebration !important;
+}
+.bg-gradient-royal-primary {
+    background: $gradient-royal-primary !important;
+}
+
+.shadow-outline {
+    box-shadow: $box-shadow-outline !important;
+}
+.shadow-outline-tab {
+    box-shadow: $box-shadow-outline-tab !important;
+}
+.shadow-outer {
+    box-shadow: $box-shadow-outer !important;
+}
+.shadow-inner-inv {
+    box-shadow: $box-shadow-inner !important;
+}
+
+.focus-ring-primary {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-primary;
+        border-color: $primary;
+    }
+}
+.focus-ring-secondary {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-secondary;
+        border-color: $secondary;
+    }
+}
+.focus-ring-success {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-success;
+        border-color: $success;
+    }
+}
+.focus-ring-danger {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-danger;
+        border-color: $danger;
+    }
+}
+.focus-ring-warning {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-warning;
+        border-color: $warning;
+    }
+}
+.focus-ring-info {
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-info;
+        border-color: $info;
+    }
+}
+
+.text-xs {
+    font-size: 0.6875rem !important;
+}
+.text-sm {
+    font-size: $font-size-sm !important;
+}
+.text-md {
+    font-size: $font-size-base !important;
+}
+.text-lg {
+    font-size: $font-size-lg !important;
+}
+.text-xl {
+    font-size: $h2-font-size !important;
+}
+.text-2xl {
+    font-size: $h1-font-size !important;
+}
+
+.ls-tighter {
+    letter-spacing: -0.05em !important;
+}
+.ls-tight {
+    letter-spacing: -0.025em !important;
+}
+.ls-normal {
+    letter-spacing: 0 !important;
+}
+.ls-wide {
+    letter-spacing: 0.025em !important;
+}
+.ls-wider {
+    letter-spacing: 0.05em !important;
+}
+.ls-widest {
+    letter-spacing: 0.1em !important;
+}
+
+.fw-regular {
+    font-weight: $font-weight-normal !important;
+}
+.fw-semibold {
+    font-weight: 600 !important;
+}

@@ -1,0 +1,106 @@
+/* ── CBT Design System: Bersih & Tenang ──────────────────────────────
+   Prinsip: kurangi kebisingan visual, perjelas hierarki, konsisten.
+   Menggantikan 157 class edu-* yang bikin pusing.
+*/
+
+/* ── Kartu aksi: modern, lega, responsif ── */
+.dash-aksi {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.25rem;
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    height: 100%;
+}
+.dash-aksi:hover {
+    border-color: var(--bs-primary);
+    box-shadow: 0 4px 20px rgba(13, 110, 253, 0.12);
+    transform: translateY(-2px);
+    color: inherit;
+}
+.dash-aksi__ikon {
+    flex: none;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.85rem;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 1.4rem;
+}
+.row > div:nth-child(2) .dash-aksi__ikon { background: #ecfdf5; color: #047857; }
+.row > div:nth-child(3) .dash-aksi__ikon { background: #fffbeb; color: #b45309; }
+.row > div:nth-child(4) .dash-aksi__ikon { background: #fef2f2; color: #b91c1c; }
+.row > div:nth-child(5) .dash-aksi__ikon { background: #f5f3ff; color: #6d28d9; }
+.row > div:nth-child(6) .dash-aksi__ikon { background: #ecfeff; color: #0e7490; }
+.dash-aksi__label {
+    display: block;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+}
+.dash-aksi__deskripsi {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--bs-secondary-color);
+    line-height: 1.4;
+}
+
+/* Mobile: kartu lebih compact, teks tidak terjepit */
+@media (max-width: 767.98px) {
+    .dash-aksi {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.6rem;
+        padding: 1.1rem 0.75rem;
+    }
+    .dash-aksi__ikon {
+        width: 52px;
+        height: 52px;
+        font-size: 1.5rem;
+    }
+    .dash-aksi__label {
+        font-size: 0.9rem;
+    }
+    .dash-aksi__deskripsi {
+        font-size: 0.75rem;
+    }
+}
+
+/* ── Judul section: sederhana ── */
+.dash-judul {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #111827;
+}
+
+/* ── Sapaan: bersih tanpa pattern ── */
+.dash-sapaan {
+    background: var(--bs-body-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+}
+.dash-sapaan__tanggal {
+    font-size: 0.8rem;
+    color: var(--bs-secondary-color);
+}
+.dash-sapaan__judul {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0.25rem 0;
+    color: var(--bs-body-color);
+}
+.dash-sapaan__sub {
+    font-size: 0.9rem;
+    color: var(--bs-secondary-color);
+    margin: 0;
+}

@@ -1,0 +1,50 @@
+// â”€â”€ 7.3. Dropdown Menu â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.dropdown-menu {
+    box-shadow: $box-shadow-lg !important;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius;
+    padding: 0.35rem;
+}
+
+.dropdown-item {
+    font-weight: 400;
+    border-radius: $border-radius-sm;
+    padding: 0.45rem 0.75rem;
+    margin: 1px 0;
+    transition: background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    color: $slate-700;
+    &:hover,
+    &:focus {
+        background-color: $gray-100;
+        color: $slate-700;
+    }
+    &:active {
+        background-color: $blue-50;
+        color: $primary;
+    }
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-primary;
+        border-radius: $border-radius-sm;
+    }
+}
+
+.dropdown-menu-sm {
+    min-width: 140px;
+    padding: 0.25rem;
+    .dropdown-item {
+        padding: 0.3rem 0.6rem;
+        font-size: $font-size-sm;
+    }
+}
+
+.dropdown-menu-lg {
+    min-width: 260px;
+    padding: 0.45rem;
+    .dropdown-item {
+        padding: 0.55rem 0.9rem;
+        font-size: $font-size-lg;
+    }
+}

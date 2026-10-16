@@ -1,0 +1,13 @@
+// â”€â”€ 7.10. Page Header â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.page-header {
+    padding-block: 12px;
+    .title {
+        font-size: $h1-font-size;
+        font-weight: 700;
+        color: $slate-700;
+    }
+    .subtitle {
+        font-size: $font-size-base;
+        color: $slate-500;
+    }
+}

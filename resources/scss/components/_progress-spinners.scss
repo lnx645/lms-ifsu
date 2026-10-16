@@ -1,0 +1,78 @@
+// ── 7.19. Progress ────────────────────────────────
+.progress {
+    background-color: $gray-200;
+    height: 0.5rem;
+    border-radius: $border-radius-sm;
+}
+
+.progress-bar {
+    background-color: $primary;
+    transition: width 0.4s ease;
+}
+.progress-bar-success {
+    background-color: $success;
+}
+.progress-bar-warning {
+    background-color: $warning;
+}
+.progress-bar-danger {
+    background-color: $danger;
+}
+.progress-bar-info {
+    background-color: $info;
+}
+
+.progress-sm {
+    height: 0.25rem;
+}
+.progress-md {
+    height: 0.5rem;
+}
+.progress-lg {
+    height: 0.75rem;
+}
+.progress-xl {
+    height: 1rem;
+}
+
+// ── 7.20. Spinner ─────────────────────────────────
+.spinner-border {
+    color: $primary;
+}
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.15em;
+}
+.spinner-border-lg {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+}
+.spinner-border-success {
+    color: $success;
+}
+.spinner-border-danger {
+    color: $danger;
+}
+.spinner-border-warning {
+    color: $warning;
+}
+.spinner-border-info {
+    color: $info;
+}
+.spinner-border-secondary {
+    color: $secondary;
+}
+.spinner-grow-success {
+    color: $success;
+}
+.spinner-grow-danger {
+    color: $danger;
+}
+.spinner-grow-warning {
+    color: $warning;
+}
+.spinner-grow-info {
+    color: $info;
+}

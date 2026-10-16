@@ -1,0 +1,95 @@
+// â”€â”€ 7.12. Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.table {
+    font-size: $font-size-sm;
+    vertical-align: middle;
+    background-color: $white;
+    thead {
+        background-color: $gray-100;
+        th {
+            background-color: $gray-100;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: $slate-500;
+            border-bottom: 1px solid $gray-300;
+            padding: $table-cell-padding-y $table-cell-padding-x;
+        }
+    }
+    tbody {
+        background-color: $white;
+        td {
+            background-color: $white;
+            padding: 0.6rem $table-cell-padding-x;
+            color: $slate-700;
+            border-bottom: 1px solid $gray-300;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        tr:hover td {
+            background-color: $blue-50;
+        }
+    }
+    tfoot th {
+        background-color: $gray-100;
+        color: $slate-500;
+    }
+    .table-img {
+        width: 36px;
+        height: 36px;
+        object-fit: cover;
+        border-radius: $border-radius-sm;
+        border: 1px solid $gray-300;
+        background-color: $gray-100;
+    }
+}
+
+.table-sm {
+    font-size: $font-size-sm;
+    thead th {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.6875rem;
+    }
+    tbody td {
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+.table-lg {
+    font-size: $font-size-base;
+    thead th {
+        padding: 0.85rem 1rem;
+        font-size: 0.8125rem;
+    }
+    tbody td {
+        padding: 0.85rem 1rem;
+    }
+}
+
+// â”€â”€ 7.13. Empty Data Alert â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.empty-data-alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+    flex-direction: column;
+    .empty-data-description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        h5 {
+            font-weight: 600;
+            font-size: $font-size-base;
+            color: $slate-700;
+        }
+        p {
+            font-size: $font-size-sm;
+            color: $slate-500;
+        }
+    }
+    .empty-data-img img {
+        width: 90px;
+    }
+}

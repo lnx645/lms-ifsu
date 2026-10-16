@@ -1,0 +1,239 @@
+// â”€â”€ 7.21. Accordion â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.accordion {
+    --bs-accordion-color: #{$slate-700};
+    --bs-accordion-bg: #{$white};
+    --bs-accordion-border-color: #{$gray-300};
+    --bs-accordion-btn-color: #{$slate-700};
+    --bs-accordion-btn-bg: #{$white};
+    --bs-accordion-btn-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23475569'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    --bs-accordion-btn-icon-width: 1rem;
+    --bs-accordion-active-color: #{$primary};
+    --bs-accordion-active-bg: #{$primary-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231d4ed8'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+}
+
+.accordion-item {
+    border: 1px solid $gray-300;
+    overflow: hidden;
+    background-color: $white;
+    margin-bottom: 0;
+    + .accordion-item {
+        border-top: 0;
+        margin-top: -1px;
+    }
+    &:first-child {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+    }
+    &:last-child {
+        border-bottom-left-radius: $border-radius;
+        border-bottom-right-radius: $border-radius;
+    }
+}
+
+.accordion-button {
+    font-weight: 600;
+    font-size: 13px;
+    color: $slate-700;
+    padding: 0.85rem 1rem;
+    background-color: $white;
+    transition: all 0.2s ease;
+    gap: 0;
+    &:hover {
+        background-color: $gray-100;
+    }
+    &:not(.collapsed) {
+        background-color: $primary-50;
+        color: $primary;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $gray-300;
+        &:hover {
+            background-color: darken($primary-50, 3%);
+        }
+    }
+    &:focus {
+        box-shadow: none;
+        border-color: transparent;
+    }
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-primary;
+        border-color: $primary;
+        border-radius: $border-radius;
+    }
+    &::after {
+        flex-shrink: 0;
+        width: var(--bs-accordion-btn-icon-width);
+        height: var(--bs-accordion-btn-icon-width);
+        margin-left: auto;
+        content: '';
+        background-image: var(--bs-accordion-btn-icon);
+        background-repeat: no-repeat;
+        background-size: var(--bs-accordion-btn-icon-width);
+        transition: transform 0.2s ease;
+    }
+    &:not(.collapsed)::after {
+        background-image: var(--bs-accordion-btn-active-icon);
+        transform: rotate(-180deg);
+    }
+}
+
+.accordion-body {
+    font-size: $font-size-sm;
+    color: $slate-500;
+    line-height: 1.5;
+    padding: 0.85rem 1rem;
+}
+
+.accordion-collapse {
+    border-top: 1px solid $gray-300;
+}
+
+// Accordion per-variant
+.accordion-primary {
+    --bs-accordion-active-color: #{$primary};
+    --bs-accordion-active-bg: #{$primary-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%231d4ed8'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $primary-50;
+        color: $primary;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $primary-100;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-primary;
+        border-color: $primary;
+    }
+    .accordion-collapse {
+        border-top-color: $primary-100;
+    }
+}
+
+.accordion-success {
+    --bs-accordion-active-color: #{$success-700};
+    --bs-accordion-active-bg: #{$success-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233fae66'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $success-50;
+        color: $success-700;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $success-100;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-success;
+        border-color: $success;
+    }
+    .accordion-collapse {
+        border-top-color: $success-100;
+    }
+}
+
+.accordion-danger {
+    --bs-accordion-active-color: #{$danger-700};
+    --bs-accordion-active-bg: #{$danger-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23c25c52'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $danger-50;
+        color: $danger-700;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $danger-100;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-danger;
+        border-color: $danger;
+    }
+    .accordion-collapse {
+        border-top-color: $danger-100;
+    }
+}
+
+.accordion-warning {
+    --bs-accordion-active-color: #{$warning-700};
+    --bs-accordion-active-bg: #{$warning-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d19c2a'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $warning-50;
+        color: $warning-700;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $warning-100;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-warning;
+        border-color: $warning;
+    }
+    .accordion-collapse {
+        border-top-color: $warning-100;
+    }
+}
+
+.accordion-info {
+    --bs-accordion-active-color: #{$info-700};
+    --bs-accordion-active-bg: #{$info-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%233e8a84'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $info-50;
+        color: $info-700;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $info-100;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-info;
+        border-color: $info;
+    }
+    .accordion-collapse {
+        border-top-color: $info-100;
+    }
+}
+
+.accordion-secondary {
+    --bs-accordion-active-color: #{$secondary-700};
+    --bs-accordion-active-bg: #{$secondary-50};
+    --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23475569'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    .accordion-button:not(.collapsed) {
+        background-color: $secondary-50;
+        color: $secondary-700;
+        box-shadow: inset 0 calc(-1 * 1px) 0 $gray-300;
+    }
+    .accordion-button:focus-visible {
+        box-shadow: $focus-ring-secondary;
+        border-color: $secondary;
+    }
+    .accordion-collapse {
+        border-top-color: $gray-300;
+    }
+}
+
+.accordion-sm {
+    .accordion-button {
+        padding: 0.55rem 0.75rem;
+        font-size: $font-size-sm;
+    }
+    .accordion-body {
+        padding: 0.55rem 0.75rem;
+        font-size: $font-size-sm;
+    }
+}
+
+.accordion-lg {
+    .accordion-button {
+        padding: 1.1rem 1.25rem;
+        font-size: $font-size-lg;
+    }
+    .accordion-body {
+        padding: 1.1rem 1.25rem;
+        font-size: $font-size-base;
+    }
+}
+
+.accordion-flush {
+    .accordion-item {
+        border-right: 0;
+        border-left: 0;
+        border-radius: 0;
+        &:first-child {
+            border-top: 0;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+    .accordion-button {
+        &:focus-visible {
+            border-radius: 0;
+        }
+    }
+}

@@ -1,0 +1,147 @@
+[data-sonner-toaster] {
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+        sans-serif !important;
+
+    [data-sonner-toast] {
+        background: $white !important;
+        border: 1px solid $gray-300 !important; // Border netral
+        border-radius: 8px !important; // Radius card 8px
+        box-shadow:
+            0 4px 16px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.05) !important;
+        padding: 0.85rem 1rem !important;
+        color: $slate-700 !important;
+        gap: 10px !important;
+        transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1) !important;
+
+        // ── Content Layout ─────────────────────────────
+        [data-content] {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        // Title / Header Toast
+        [data-title] {
+            color: $slate-700 !important;
+            font-weight: 600 !important;
+            font-size: 0.875rem !important; // 14px
+            line-height: 1.35 !important;
+        }
+
+        // Description Text
+        [data-description] {
+            color: $slate-500 !important; // Secondary label color
+            font-size: 0.8125rem !important; // 13px
+            line-height: 1.4 !important;
+            font-weight: 400 !important;
+        }
+
+        // ── Status Variant Icons & Badges ──────────────
+
+        // Info (Teal)
+        &[data-type='info'] {
+            border-left: 4px solid $info-500 !important;
+            [data-icon] {
+                color: $info-500 !important;
+            }
+        }
+
+        // Success (Green)
+        &[data-type='success'] {
+            border-left: 4px solid $success-500 !important;
+            [data-icon] {
+                color: $success-500 !important;
+            }
+        }
+
+        // Error / Danger (Rose)
+        &[data-type='error'] {
+            border-left: 4px solid $danger-500 !important;
+            [data-icon] {
+                color: $danger-500 !important;
+            }
+        }
+
+        // Warning (Amber)
+        &[data-type='warning'] {
+            border-left: 4px solid $warning-500 !important;
+            [data-icon] {
+                color: $warning-500 !important;
+            }
+        }
+
+        // ── Action Buttons inside Toast ───────────────
+        [data-button] {
+            background-color: $primary !important;
+            color: $white !important;
+            font-weight: 600 !important;
+            font-size: 0.8125rem !important;
+            border-radius: 6px !important;
+            padding: 0.35rem 0.75rem !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: background-color 0.15s ease !important;
+
+            &:hover {
+                background-color: $primary-700 !important;
+            }
+
+            &:focus {
+                box-shadow: inset 0 0 0 1px $white !important;
+                outline: none !important;
+            }
+        }
+
+        [data-cancel] {
+            background-color: $gray-100 !important;
+            color: $slate-700 !important;
+            border: 1px solid $gray-300 !important;
+            font-weight: 600 !important;
+            font-size: 0.8125rem !important;
+            border-radius: 6px !important;
+            padding: 0.35rem 0.75rem !important;
+            cursor: pointer !important;
+
+            &:hover {
+                background-color: $gray-200 !important;
+                border-color: $gray-500 !important;
+            }
+        }
+
+        // ── Close Button (Circle Pill Meta Style) ──────
+        [data-close-button] {
+            top: 10px !important;
+            right: 10px !important;
+            left: auto !important;
+            width: 24px !important;
+            height: 24px !important;
+            background-color: $gray-100 !important;
+            border: none !important;
+            border-radius: 50% !important;
+            color: $slate-700 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition:
+                background-color 0.15s ease,
+                transform 0.1s ease !important;
+            opacity: 1 !important;
+
+            &:hover {
+                background-color: $gray-200 !important;
+            }
+
+            &:active {
+                transform: scale(0.92) !important;
+                background-color: $gray-300 !important;
+            }
+
+            svg {
+                width: 12px !important;
+                height: 12px !important;
+            }
+        }
+    }
+}

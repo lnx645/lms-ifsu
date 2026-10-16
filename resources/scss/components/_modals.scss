@@ -1,0 +1,85 @@
+// â”€â”€ 7.11. Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.modal {
+    backdrop-filter: none;
+}
+
+.modal-backdrop.show {
+    opacity: 0.6;
+    background-color: $overlay-fill;
+}
+
+.modal-content {
+    background-color: $white;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius-xl !important;
+    box-shadow: $box-shadow-xl;
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: $white;
+    border-bottom: 1px solid $gray-200;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .btn-close {
+        padding: 0;
+        margin: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50% !important;
+        background-color: $slate-100 !important;
+        opacity: 1 !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+            background-color 0.15s ease,
+            transform 0.1s ease;
+        border: none;
+
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23334155'%3E%3Cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3E%3C/svg%3E") !important;
+        background-size: 12px 12px !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+
+        &:hover {
+            background-color: $gray-200 !important;
+        }
+        &:active {
+            transform: scale(0.95);
+            background-color: $gray-400 !important;
+        }
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+        &:focus-visible {
+            box-shadow: $focus-ring-primary;
+            outline: none;
+        }
+    }
+}
+
+.modal-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: $slate-700;
+}
+
+.modal-footer {
+    border-top: 1px solid $gray-300;
+    padding: 0.75rem 1.25rem;
+}
+
+.modal-sm .modal-content {
+    border-radius: $border-radius-lg !important;
+}
+.modal-lg .modal-content {
+    border-radius: $border-radius-xl !important;
+}
+.modal-xl .modal-content {
+    border-radius: 20px !important;
+}

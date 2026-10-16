@@ -1,0 +1,106 @@
+// â”€â”€ 7.18. Tooltip & Popover â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.tooltip-inner {
+    background-color: $slate-700;
+    color: $white;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    border-radius: $border-radius-sm;
+    padding: 0.35rem 0.6rem;
+}
+.tooltip .tooltip-arrow::before {
+    border-top-color: $slate-700;
+}
+.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: $slate-700;
+}
+
+.tooltip-primary .tooltip-inner {
+    background-color: $primary;
+}
+.tooltip-primary .tooltip-arrow::before {
+    border-top-color: $primary;
+}
+.bs-tooltip-bottom.tooltip-primary .tooltip-arrow::before {
+    border-bottom-color: $primary;
+}
+
+.tooltip-success .tooltip-inner {
+    background-color: $success;
+}
+.tooltip-success .tooltip-arrow::before {
+    border-top-color: $success;
+}
+.bs-tooltip-bottom.tooltip-success .tooltip-arrow::before {
+    border-bottom-color: $success;
+}
+
+.tooltip-danger .tooltip-inner {
+    background-color: $danger;
+}
+.tooltip-danger .tooltip-arrow::before {
+    border-top-color: $danger;
+}
+.bs-tooltip-bottom.tooltip-danger .tooltip-arrow::before {
+    border-bottom-color: $danger;
+}
+
+.tooltip-warning .tooltip-inner {
+    background-color: $warning;
+    color: $slate-700;
+}
+.tooltip-warning .tooltip-arrow::before {
+    border-top-color: $warning;
+}
+.bs-tooltip-bottom.tooltip-warning .tooltip-arrow::before {
+    border-bottom-color: $warning;
+}
+
+.tooltip-info .tooltip-inner {
+    background-color: $info;
+}
+.tooltip-info .tooltip-arrow::before {
+    border-top-color: $info;
+}
+.bs-tooltip-bottom.tooltip-info .tooltip-arrow::before {
+    border-bottom-color: $info;
+}
+
+.popover {
+    border: 1px solid $gray-300;
+    box-shadow: $box-shadow-lg;
+    border-radius: $border-radius-lg;
+    .popover-header {
+        background-color: $white;
+        border-bottom: 1px solid $gray-300;
+        font-weight: 600;
+        font-size: $font-size-sm;
+        color: $slate-700;
+        border-radius: $border-radius-lg $border-radius-lg 0 0;
+    }
+    .popover-body {
+        font-size: $font-size-sm;
+        color: $slate-500;
+    }
+}
+
+.popover-sm {
+    .popover-header {
+        font-size: $font-size-sm;
+        padding: 0.4rem 0.6rem;
+    }
+    .popover-body {
+        font-size: $font-size-sm;
+        padding: 0.4rem 0.6rem;
+    }
+}
+
+.popover-lg {
+    .popover-header {
+        font-size: $font-size-lg;
+        padding: 0.7rem 1rem;
+    }
+    .popover-body {
+        font-size: $font-size-base;
+        padding: 0.7rem 1rem;
+    }
+}

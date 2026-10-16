@@ -1,0 +1,74 @@
+// â”€â”€ 7.22. List Group â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.list-group-item {
+    font-size: $font-size-base;
+    padding: 0.65rem 0.85rem;
+    border-color: $gray-300;
+    color: $slate-700;
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease;
+    &:hover {
+        background-color: $gray-100;
+    }
+    &.active {
+        background-color: $primary;
+        border-color: $primary;
+        color: $white;
+        font-weight: 600;
+    }
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-primary;
+        z-index: 1;
+    }
+}
+
+.list-group-item-success {
+    &.active {
+        background-color: $success;
+        border-color: $success;
+    }
+    &:focus-visible {
+        box-shadow: $focus-ring-success;
+    }
+}
+
+.list-group-item-danger {
+    &.active {
+        background-color: $danger;
+        border-color: $danger;
+    }
+    &:focus-visible {
+        box-shadow: $focus-ring-danger;
+    }
+}
+
+.list-group-item-warning {
+    &.active {
+        background-color: $warning;
+        border-color: $warning;
+        color: $slate-700;
+    }
+    &:focus-visible {
+        box-shadow: $focus-ring-warning;
+    }
+}
+
+.list-group-item-info {
+    &.active {
+        background-color: $info;
+        border-color: $info;
+    }
+    &:focus-visible {
+        box-shadow: $focus-ring-info;
+    }
+}
+
+.list-group-item-sm {
+    padding: 0.4rem 0.65rem;
+    font-size: $font-size-sm;
+}
+.list-group-item-lg {
+    padding: 0.9rem 1.1rem;
+    font-size: $font-size-lg;
+}

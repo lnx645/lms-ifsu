@@ -1,0 +1,399 @@
+﻿// 7.4. Form Controls
+label {
+    font-size: $font-size-sm;
+}
+
+.form-control,
+.form-select {
+    background-color: $white;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius;
+    color: $slate-700;
+    padding: $input-padding-y $input-padding-x;
+    transition: $input-transition;
+    &:focus {
+        background-color: $white;
+        border-color: $primary;
+        box-shadow: $focus-ring;
+    }
+    &:focus-visible {
+        outline: none;
+        border-color: $primary;
+        box-shadow: $focus-ring;
+    }
+    &::placeholder {
+        color: $slate-400;
+        font-weight: $font-weight-normal;
+    }
+}
+
+.form-control-sm,
+.form-select-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: $font-size-sm;
+    border-radius: $border-radius-sm;
+    line-height: 1.5;
+    &::placeholder {
+        font-size: $font-size-sm;
+    }
+}
+
+.form-control-lg,
+.form-select-lg {
+    padding: 0.6rem 1rem;
+    font-size: $font-size-lg;
+    border-radius: $border-radius-lg;
+    line-height: 1.5;
+    &::placeholder {
+        font-size: $font-size-lg;
+    }
+}
+
+.form-control-success,
+.form-select-success {
+    &:focus {
+        border-color: $success;
+        box-shadow: $focus-ring-success;
+    }
+    &:focus-visible {
+        border-color: $success;
+        box-shadow: $focus-ring-success;
+    }
+}
+
+.form-control-danger,
+.form-select-danger {
+    &:focus {
+        border-color: $danger;
+        box-shadow: $focus-ring-danger;
+    }
+    &:focus-visible {
+        border-color: $danger;
+        box-shadow: $focus-ring-danger;
+    }
+}
+
+.form-control-warning,
+.form-select-warning {
+    &:focus {
+        border-color: $warning;
+        box-shadow: $focus-ring-warning;
+    }
+    &:focus-visible {
+        border-color: $warning;
+        box-shadow: $focus-ring-warning;
+    }
+}
+
+.form-control-info,
+.form-select-info {
+    &:focus {
+        border-color: $info;
+        box-shadow: $focus-ring-info;
+    }
+    &:focus-visible {
+        border-color: $info;
+        box-shadow: $focus-ring-info;
+    }
+}
+
+.form-check-input {
+    border-color: $gray-300;
+    &:focus {
+        border-color: $primary;
+        box-shadow: $focus-ring;
+    }
+    &:focus-visible {
+        outline: none;
+        border-color: $primary;
+        box-shadow: $focus-ring;
+    }
+    &:checked {
+        background-color: $primary;
+        border-color: $primary;
+    }
+}
+
+.form-check-input-sm {
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-top: 0.35em;
+}
+
+.form-switch .form-check-input.form-check-input-sm {
+    width: 1.5rem;
+    height: 0.8rem;
+    margin-top: 0.3em;
+    background-position: left center;
+    border-radius: 0.8rem;
+
+    &:checked {
+        background-position: right center;
+    }
+}
+
+.form-check-input-lg {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-top: 0.15em;
+}
+
+// ─── 7.5. svelte-select (themed) ───────────────────────────────
+.app-select {
+    display: block;
+    width: 100%;
+}
+
+.app-select .svelte-select {
+    --border: 1px solid var(--app-shell-border) !important;
+    --border-radius: 8px !important;
+    --background: var(--app-shell-surface) !important;
+    --list-background: var(--app-shell-surface) !important;
+    --list-border: 1px solid var(--app-shell-border) !important;
+    --list-border-radius: 8px !important;
+    --item-color: var(--app-shell-text) !important;
+    --item-background: var(--app-shell-surface) !important;
+    --item-hover-color: var(--app-shell-text) !important;
+    --item-hover-background: var(--app-shell-primary-soft) !important;
+    --item-is-active-color: $white !important;
+    --item-is-active-background: var(--app-shell-primary) !important;
+    --highlight-color: var(--app-shell-primary) !important;
+    --height: 2.25rem !important;
+    --item-height: auto !important;
+    --placeholder-color: var(--app-shell-text-muted) !important;
+    --multi-item-border: 1px solid var(--app-shell-border) !important;
+    --multi-item-background: var(--app-shell-primary-soft) !important;
+    --multi-color: var(--app-shell-text) !important;
+    --multi-item-clear-icon-color: var(--app-shell-text-muted) !important;
+    --input-color: var(--app-shell-text) !important;
+    --clear-icon-color: var(--app-shell-text-muted) !important;
+    --clear-icon-hover-color: var(--app-shell-danger) !important;
+
+    position: relative;
+    width: 100%;
+    min-height: var(--height);
+    padding: 0 0.75rem;
+    border: 1px solid var(--app-shell-border) !important;
+    border-radius: 8px !important;
+    background-color: var(--app-shell-surface) !important;
+    font: inherit;
+    color: var(--app-shell-text) !important;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.app-select .svelte-select:hover {
+    border-color: var(--app-shell-primary) !important;
+}
+
+.app-select .svelte-select.focused {
+    border-color: var(--app-shell-primary) !important;
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--app-shell-primary) 25%, transparent) !important;
+}
+
+.app-select .svelte-select.error {
+    border-color: var(--app-shell-danger) !important;
+}
+
+.app-select .svelte-select.error.focused {
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--app-shell-danger) 22%, transparent) !important;
+}
+
+.app-select .svelte-select.disabled {
+    background-color: var(--app-shell-primary-soft) !important;
+    color: var(--app-shell-text-muted) !important;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.app-select .svelte-select .value-container {
+    gap: 0.35rem;
+    min-height: var(--height);
+    padding: 0;
+}
+
+.app-select .svelte-select .selected-item,
+.app-select .svelte-select input {
+    margin: 0;
+    line-height: var(--height);
+    color: var(--app-shell-text) !important;
+}
+
+.app-select .svelte-select input::placeholder {
+    color: var(--app-shell-text-muted) !important;
+}
+
+.app-select .svelte-select .placeholder {
+    color: var(--app-shell-text-muted) !important;
+}
+
+.app-select .svelte-select .indicators {
+    gap: 0.35rem;
+}
+
+.app-select .app-select__chevron {
+    color: var(--app-shell-text-muted);
+    font-size: 0.8rem;
+    transition: transform 0.15s ease;
+}
+
+.app-select .app-select__chevron.is-open {
+    transform: rotate(180deg);
+    color: var(--app-shell-primary);
+}
+
+.app-select .app-select__clear {
+    font-size: 0.7rem;
+    color: var(--app-shell-text-muted);
+    cursor: pointer;
+}
+
+.app-select .app-select__clear:hover {
+    color: var(--app-shell-danger);
+}
+
+.app-select .svelte-select-list {
+    z-index: 1050;
+    margin-top: 5px;
+    padding: 0.35rem !important;
+    border: 1px solid var(--app-shell-border) !important;
+    border-radius: 6px !important;
+    background-color: var(--app-shell-surface) !important;
+    box-shadow: 0 0.5rem 1rem rgba(15, 23, 42, 0.12) !important;
+    overflow-y: auto;
+    max-height: 15rem;
+}
+
+.app-select .svelte-select-list .list-item {
+    height: auto !important;
+    padding: 0 !important;
+}
+
+.app-select .svelte-select-list .item {
+    margin: 1px 0 !important;
+    padding: 0.45rem 0.75rem !important;
+    border-radius: 4px !important;
+    font-size: 0.9rem;
+    line-height: 1.35 !important;
+    color: var(--app-shell-text) !important;
+    background: transparent !important;
+}
+
+.app-select .svelte-select-list .item:hover,
+.app-select .svelte-select-list .item.active {
+    background: var(--app-shell-primary-soft) !important;
+}
+
+.app-select .svelte-select-list .item.selected {
+    color: var(--app-shell-primary) !important;
+    font-weight: 600;
+}
+
+.app-select .svelte-select-list .list-group-title {
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--app-shell-text-muted) !important;
+}
+
+.app-select .svelte-select-list .empty {
+    padding: 0.6rem 0.75rem !important;
+    color: var(--app-shell-text-muted) !important;
+    font-size: 0.875rem;
+}
+
+.app-select .svelte-select .multi-item {
+    margin: 0.1rem;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid var(--app-shell-border) !important;
+    border-radius: 0.35rem !important;
+    background: var(--app-shell-primary-soft) !important;
+    color: var(--app-shell-text) !important;
+    font-size: 0.8rem;
+    line-height: 1.25;
+}
+
+.app-select .svelte-select .multi-item .clear-icon {
+    color: var(--app-shell-text-muted) !important;
+    width: 0.7rem !important;
+    height: 0.7rem !important;
+    font-size: 0.7rem !important;
+}
+
+.app-select .svelte-select .multi-item .clear-icon:hover {
+    color: var(--app-shell-danger) !important;
+}
+
+.app-select--sm .svelte-select {
+    --height: 1.85rem !important;
+    min-height: 1.85rem;
+    padding: 0 0.6rem;
+    font-size: 0.85rem;
+}
+
+.app-select--sm .svelte-select .selected-item,
+.app-select--sm .svelte-select input {
+    line-height: 1.85rem;
+}
+
+.app-select--xs .svelte-select {
+    --height: 1.55rem !important;
+    min-height: 1.55rem;
+    padding: 0 0.45rem;
+    font-size: 0.78rem;
+}
+
+.app-select--xs .svelte-select .selected-item,
+.app-select--xs .svelte-select input {
+    line-height: 1.55rem;
+}
+
+.app-select--lg .svelte-select {
+    --height: 2.75rem !important;
+    min-height: 2.75rem;
+    padding: 0 1rem;
+    font-size: 1.05rem;
+}
+
+.app-select--lg .svelte-select .selected-item,
+.app-select--lg .svelte-select input {
+    line-height: 2.75rem;
+}
+
+.app-select--sm .svelte-select .multi-item {
+    margin: 0.08rem;
+    padding: 0.05rem 0.35rem;
+    font-size: 0.75rem;
+}
+
+.app-select--xs .svelte-select .multi-item {
+    margin: 0.06rem;
+    padding: 0.05rem 0.3rem;
+    font-size: 0.7rem;
+}
+
+.app-select--lg .svelte-select .multi-item {
+    margin: 0.12rem;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.9rem;
+}
+
+.app-select--sm .svelte-select .multi-item .clear-icon {
+    width: 0.6rem !important;
+    height: 0.6rem !important;
+    font-size: 0.6rem !important;
+}
+
+.app-select--xs .svelte-select .multi-item .clear-icon {
+    width: 0.55rem !important;
+    height: 0.55rem !important;
+    font-size: 0.55rem !important;
+}
+
+.app-select--lg .svelte-select .multi-item .clear-icon {
+    width: 0.8rem !important;
+    height: 0.8rem !important;
+    font-size: 0.8rem !important;
+}

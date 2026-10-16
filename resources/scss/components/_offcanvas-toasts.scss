@@ -1,0 +1,151 @@
+// â”€â”€ 7.25. Offcanvas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.offcanvas {
+    background-color: $white;
+}
+.offcanvas-header {
+    border-bottom: 1px solid $gray-300;
+    padding: 0.85rem 1rem;
+}
+.offcanvas-title {
+    font-weight: 600;
+    color: $slate-700;
+    font-size: $font-size-lg;
+}
+.offcanvas-body {
+    color: $slate-700;
+    font-size: $font-size-base;
+}
+.offcanvas-footer {
+    border-top: 1px solid $gray-300;
+    padding: 0.85rem 1rem;
+}
+.offcanvas-backdrop.show {
+    opacity: 0.6;
+    background-color: $overlay-fill;
+}
+.offcanvas .btn-close:focus-visible {
+    box-shadow: $focus-ring-primary;
+    outline: none;
+}
+
+.offcanvas-sm {
+    .offcanvas-header {
+        padding: 0.55rem 0.75rem;
+    }
+    .offcanvas-title {
+        font-size: $font-size-base;
+    }
+    .offcanvas-body {
+        font-size: $font-size-sm;
+    }
+}
+
+.offcanvas-lg {
+    .offcanvas-header {
+        padding: 1.1rem 1.25rem;
+    }
+    .offcanvas-title {
+        font-size: $h2-font-size;
+    }
+    .offcanvas-body {
+        font-size: $font-size-lg;
+    }
+}
+
+// â”€â”€ 7.26. Toast â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.toast {
+    border: 1px solid $gray-300;
+    box-shadow: $box-shadow-lg;
+    border-radius: $border-radius;
+}
+
+.toast-header {
+    background-color: $white;
+    border-bottom: 1px solid $gray-300;
+    font-weight: 600;
+    color: $slate-700;
+    padding: 0.5rem 0.75rem;
+}
+
+.toast-body {
+    font-size: $font-size-sm;
+    color: $slate-700;
+    padding: 0.65rem 0.75rem;
+}
+
+.toast-primary {
+    border-color: $primary-100;
+    .toast-header {
+        background-color: $primary-50;
+        color: $primary-700;
+    }
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-primary;
+    }
+}
+
+.toast-success {
+    border-color: $success-100;
+    .toast-header {
+        background-color: $success-50;
+        color: $success-700;
+    }
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-success;
+    }
+}
+
+.toast-danger {
+    border-color: $danger-100;
+    .toast-header {
+        background-color: $danger-50;
+        color: $danger-700;
+    }
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-danger;
+    }
+}
+
+.toast-warning {
+    border-color: $warning-100;
+    .toast-header {
+        background-color: $warning-50;
+        color: $warning-700;
+    }
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-warning;
+    }
+}
+
+.toast-info {
+    border-color: $info-100;
+    .toast-header {
+        background-color: $info-50;
+        color: $info-700;
+    }
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-info;
+    }
+}
+
+.toast-sm {
+    .toast-header {
+        padding: 0.35rem 0.55rem;
+        font-size: $font-size-sm;
+    }
+    .toast-body {
+        padding: 0.45rem 0.55rem;
+        font-size: $font-size-sm;
+    }
+}
+
+.toast-lg {
+    .toast-header {
+        padding: 0.7rem 1rem;
+        font-size: $font-size-lg;
+    }
+    .toast-body {
+        padding: 0.85rem 1rem;
+        font-size: $font-size-base;
+    }
+}

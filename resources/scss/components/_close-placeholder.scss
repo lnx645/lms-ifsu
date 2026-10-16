@@ -1,0 +1,24 @@
+// ── 7.23. Close Button ────────────────────────────
+.btn-close {
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    &:focus-visible {
+        box-shadow: $focus-ring-primary;
+        outline: none;
+        border-radius: 2px;
+    }
+}
+
+// ── 7.24. Placeholder ─────────────────────────────
+.placeholder {
+    background-color: $gray-200;
+    border-radius: $border-radius-sm;
+}
+.placeholder-sm {
+    min-height: 0.8rem;
+}
+.placeholder-lg {
+    min-height: 1.5rem;
+}

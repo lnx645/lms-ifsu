@@ -1,0 +1,375 @@
+// Ã¢â€â‚¬Ã¢â€â‚¬ 7.1. Button Base Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: $btn-font-weight;
+    border-radius: $border-radius;
+    transition: $btn-transition;
+    will-change: transform;
+
+    &:not(:disabled):not(.disabled):hover {
+        box-shadow: $box-shadow-sm;
+        transform: translateY(-1px);
+    }
+
+    &:not(:disabled):not(.disabled):active {
+        box-shadow: none;
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+// Ã¢â€â‚¬Ã¢â€â‚¬ 7.2. Solid Button Variants (Full Mixin Override) Ã¢â€â‚¬Ã¢â€â‚¬
+// Menggunakan @include button-variant() agar SEMUA state
+// (base, hover, active, focus, disabled, checked) di-generate
+// sekaligus Ã¢â‚¬â€ tidak ada state yang bocor dari Bootstrap default.
+
+// Primary — Brand blue $primary, teks PUTIH (eksplisit, bukan color-contrast otomatis)
+.btn-primary {
+    @include button-variant(
+        $background: $primary,
+        $border: $primary,
+        $color: $white,
+        $hover-background: darken($primary, 8%),
+        $hover-border: darken($primary, 10%),
+        $hover-color: $white,
+        $active-background: darken($primary, 12%),
+        $active-border: darken($primary, 14%),
+        $active-color: $white,
+        $disabled-color: rgba($white, 0.5)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-primary;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($primary, 0.15);
+    }
+}
+
+// Secondary — Slate surface, teks gelap
+.btn-secondary {
+    @include button-variant(
+        $background: $white,
+        $border: $gray-300,
+        $color: $slate-700,
+        $hover-background: $gray-100,
+        $hover-border: $gray-400,
+        $hover-color: $slate-700,
+        $active-background: $gray-200,
+        $active-border: $gray-500,
+        $active-color: $slate-700,
+        $disabled-background: $white,
+        $disabled-border: $gray-200,
+        $disabled-color: $slate-400
+    );
+    box-shadow: $box-shadow-sm;
+    &:focus-visible {
+        box-shadow: $focus-ring-secondary;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($slate-700, 0.1);
+    }
+}
+
+// Success — $success (Olive #788C5D), teks putih
+.btn-success {
+    @include button-variant(
+        $background: $success,
+        $border: $success,
+        $color: $white,
+        $hover-background: darken($success, 8%),
+        $hover-border: darken($success, 10%),
+        $hover-color: $white,
+        $active-background: darken($success, 12%),
+        $active-border: darken($success, 14%),
+        $active-color: $white,
+        $disabled-color: rgba($white, 0.5)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-success;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($success, 0.15);
+    }
+}
+
+// Danger — $danger (Rose #C46686), teks putih
+.btn-danger {
+    @include button-variant(
+        $background: $danger,
+        $border: $danger,
+        $color: $white,
+        $hover-background: darken($danger, 8%),
+        $hover-border: darken($danger, 10%),
+        $hover-color: $white,
+        $active-background: darken($danger, 12%),
+        $active-border: darken($danger, 14%),
+        $active-color: $white,
+        $disabled-color: rgba($white, 0.5)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-danger;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($danger, 0.15);
+    }
+}
+
+// Warning — $warning (Amber #D4A27F), teks GELAP (bukan putih!)
+.btn-warning {
+    @include button-variant(
+        $background: $warning,
+        $border: $warning,
+        $color: $slate-700,
+        $hover-background: darken($warning, 8%),
+        $hover-border: darken($warning, 10%),
+        $hover-color: $slate-700,
+        $active-background: darken($warning, 12%),
+        $active-border: darken($warning, 14%),
+        $active-color: $slate-700,
+        $disabled-background: $warning,
+        $disabled-border: $warning,
+        $disabled-color: rgba($slate-700, 0.5)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-warning;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($warning, 0.15);
+    }
+}
+
+// Info — $info (Cactus #BCD1CA), teks putih
+.btn-info {
+    @include button-variant(
+        $background: $info,
+        $border: $info,
+        $color: $white,
+        $hover-background: darken($info, 8%),
+        $hover-border: darken($info, 10%),
+        $hover-color: $white,
+        $active-background: darken($info, 12%),
+        $active-border: darken($info, 14%),
+        $active-color: $white,
+        $disabled-color: rgba($white, 0.5)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-info;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($info, 0.15);
+    }
+}
+
+// Dark — Charcoal $dark, teks putih
+.btn-dark {
+    @include button-variant(
+        $background: $dark,
+        $border: $dark,
+        $hover-background: darken($dark, 5%),
+        $hover-border: darken($dark, 5%),
+        $active-background: darken($dark, 10%),
+        $active-border: darken($dark, 10%)
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-dark;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($dark, 0.15);
+    }
+}
+
+// Light — $light (Ivory #FAF9F5), teks gelap
+.btn-light {
+    @include button-variant(
+        $background: $light,
+        $border: $gray-300,
+        $color: $slate-700,
+        $hover-background: darken($light, 3%),
+        $hover-border: $gray-400,
+        $hover-color: $slate-700,
+        $active-background: darken($light, 6%),
+        $active-border: $gray-500,
+        $active-color: $slate-700,
+        $disabled-background: $light,
+        $disabled-border: $gray-200,
+        $disabled-color: $slate-400
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-secondary;
+    }
+    &:active:focus {
+        box-shadow: 0 0 0 3px rgba($slate-700, 0.1);
+    }
+}
+
+// Ã¢â€â‚¬Ã¢â€â‚¬ 7.2b. Outline Button Variants (Full Mixin Override) Ã¢â€â‚¬Ã¢â€â‚¬
+
+// Outline Primary Ã¢â‚¬â€ border biru, hover fill biru
+.btn-outline-primary {
+    @include button-outline-variant(
+        $color: $primary-700,
+        $color-hover: $white,
+        $active-background: $primary,
+        $active-border: $primary,
+        $active-color: $white
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-primary;
+    }
+}
+
+// Outline Secondary Ã¢â‚¬â€ border gelap, hover fill abu
+.btn-outline-secondary {
+    @include button-outline-variant(
+        $color: $slate-700,
+        $color-hover: $slate-700,
+        $active-background: $gray-200,
+        $active-border: $gray-400,
+        $active-color: $slate-700
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-secondary;
+    }
+}
+
+// Outline Success Ã¢â‚¬â€ border hijau, hover fill hijau
+.btn-outline-success {
+    @include button-outline-variant(
+        $color: $success-700,
+        $color-hover: $white,
+        $active-background: $success,
+        $active-border: $success,
+        $active-color: $white
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-success;
+    }
+}
+
+// Outline Danger Ã¢â‚¬â€ border merah, hover fill merah
+.btn-outline-danger {
+    @include button-outline-variant(
+        $color: $danger-700,
+        $color-hover: $white,
+        $active-background: $danger,
+        $active-border: $danger,
+        $active-color: $white
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-danger;
+    }
+}
+
+// Outline Warning Ã¢â‚¬â€ border amber, hover fill amber, teks GELAP
+.btn-outline-warning {
+    @include button-outline-variant(
+        $color: $warning-700,
+        $color-hover: $slate-700,
+        $active-background: $warning,
+        $active-border: $warning,
+        $active-color: $slate-700
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-warning;
+    }
+}
+
+// Outline Info Ã¢â‚¬â€ border biru sky, hover fill biru sky
+.btn-outline-info {
+    @include button-outline-variant(
+        $color: $info-700,
+        $color-hover: $white,
+        $active-background: $info,
+        $active-border: $info,
+        $active-color: $white
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-info;
+    }
+}
+
+// Outline Dark Ã¢â‚¬â€ border gelap, hover fill gelap
+.btn-outline-dark {
+    @include button-outline-variant(
+        $color: $dark,
+        $color-hover: $white,
+        $active-background: $dark,
+        $active-border: $dark,
+        $active-color: $white
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-dark;
+    }
+}
+
+// Outline Light Ã¢â‚¬â€ border abu terang, hover fill abu terang, teks gelap
+.btn-outline-light {
+    @include button-outline-variant(
+        $color: $gray-400,
+        $color-hover: $slate-700,
+        $active-background: $light,
+        $active-border: $gray-400,
+        $active-color: $slate-700
+    );
+    &:focus-visible {
+        box-shadow: $focus-ring-secondary;
+    }
+}
+
+// Ã¢â€â‚¬Ã¢â€â‚¬ 7.2c. Text-bg Utility Overrides Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+// Dipisah dari .btn-* Ã¢â‚¬â€ ini BUKAN button, ini utility class
+
+.text-bg-primary,
+.text-bg-success,
+.text-bg-info,
+.text-bg-danger,
+.text-bg-dark,
+.text-bg-qontak {
+    color: $white !important;
+    font-weight: 600;
+}
+
+.text-bg-secondary {
+    color: $white !important;
+    font-weight: 600;
+}
+
+// Warning background terang Ã¢â€ â€™ teks harus gelap
+.text-bg-warning {
+    color: $slate-700 !important;
+    font-weight: 600;
+}
+
+// Light background terang Ã¢â€ â€™ teks harus gelap
+.text-bg-light {
+    color: $slate-700 !important;
+    font-weight: 600;
+}
+
+// Ã¢â€â‚¬Ã¢â€â‚¬ 7.2d. Button Size Variants Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬Ã¢â€â‚¬
+
+.btn-sm {
+    padding: 0.2rem 0.5rem;
+    font-size: $font-size-sm;
+    border-radius: $border-radius-sm;
+    gap: 4px;
+}
+
+.btn-md {
+    padding: $btn-padding-y $btn-padding-x;
+    font-size: $btn-font-size;
+    border-radius: $border-radius;
+    gap: 6px;
+}
+
+.btn-lg {
+    padding: 0.65rem 1.25rem;
+    font-size: $btn-font-size-lg;
+    border-radius: $border-radius-lg;
+    gap: 8px;
+}

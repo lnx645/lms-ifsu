@@ -1,0 +1,38 @@
+// â”€â”€ 7.16. Pagination â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.page-link {
+    color: $slate-500;
+    font-weight: 600;
+    font-size: $font-size-sm;
+    border-color: $gray-300;
+    border-radius: $border-radius-sm;
+    padding: 0.35rem 0.7rem;
+    transition: all 0.15s ease;
+    &:hover {
+        color: $primary;
+        background-color: $gray-100;
+        border-color: $gray-300;
+    }
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring-primary;
+        border-color: $primary;
+    }
+}
+.page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+    color: $white;
+}
+.page-item.disabled .page-link {
+    color: $slate-400;
+    background-color: $gray-100;
+}
+
+.pagination-sm .page-link {
+    padding: 0.2rem 0.5rem;
+    font-size: $font-size-sm;
+}
+.pagination-lg .page-link {
+    padding: 0.55rem 1rem;
+    font-size: $font-size-lg;
+}

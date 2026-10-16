@@ -1,0 +1,84 @@
+// â”€â”€ 7.14. Alerts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.alert {
+    border-radius: $border-radius;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    border: 1px solid;
+    .btn-close {
+        &:focus-visible {
+            outline: none;
+            box-shadow: $focus-ring-primary;
+            border-radius: 2px;
+        }
+    }
+}
+
+.alert-primary {
+    background-color: $primary-50;
+    border-color: $blue-100;
+    color: $primary-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-primary;
+    }
+}
+
+.alert-secondary {
+    background-color: $secondary-50;
+    border-color: $gray-300;
+    color: $slate-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-secondary;
+    }
+}
+
+.alert-success {
+    background-color: $success-50;
+    border-color: $green-100;
+    color: $green-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-success;
+    }
+}
+
+.alert-info {
+    background-color: $info-50;
+    border-color: $teal-100;
+    color: $teal-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-info;
+    }
+}
+
+.alert-warning {
+    background-color: $warning-50;
+    border-color: $amber-100;
+    color: $amber-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-warning;
+    }
+}
+
+.alert-danger {
+    background-color: $danger-50;
+    border-color: $rose-100;
+    color: $rose-700;
+    .btn-close:focus-visible {
+        box-shadow: $focus-ring-danger;
+    }
+}
+
+.alert-sm {
+    padding: 0.5rem 0.75rem;
+    font-size: $font-size-sm;
+    .btn-close {
+        padding: 0.35rem 0.5rem;
+    }
+}
+
+.alert-lg {
+    padding: 1rem 1.25rem;
+    font-size: $font-size-base;
+    .btn-close {
+        padding: 0.65rem 0.85rem;
+    }
+}

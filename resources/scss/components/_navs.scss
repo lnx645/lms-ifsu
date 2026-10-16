@@ -1,0 +1,111 @@
+// â”€â”€ 7.8. Nav Tabs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nav-tabs {
+    border-bottom: 1px solid $gray-300;
+    gap: 1.25rem;
+    .nav-link {
+        border: none !important;
+        border-radius: 0;
+        color: $slate-500;
+        font-weight: 600;
+        font-size: $font-size-base;
+        padding: 0.75rem 0.25rem;
+        position: relative;
+        background: transparent;
+        transition: color 0.15s ease;
+        &:hover {
+            color: $blue-700;
+            border-color: transparent !important;
+        }
+        &:focus-visible {
+            outline: none;
+            box-shadow: $focus-ring-primary;
+            border-radius: 2px;
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: $primary;
+            border-radius: 3px 3px 0 0;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.2s ease-in-out;
+        }
+        &.active {
+            color: $blue-700 !important;
+            background: transparent !important;
+            border-color: transparent !important;
+            &::after {
+                transform: scaleX(1);
+            }
+        }
+    }
+}
+
+.nav-tabs-sm {
+    .nav-link {
+        font-size: $font-size-sm;
+        padding: 0.5rem 0.2rem;
+    }
+}
+
+.nav-tabs-lg {
+    .nav-link {
+        font-size: $font-size-lg;
+        padding: 1rem 0.35rem;
+    }
+}
+
+// â”€â”€ 7.9. Nav Pills â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.nav-pills {
+    background-color: $gray-100;
+    padding: 0.25rem;
+    border-radius: $border-radius;
+    display: inline-flex;
+    gap: 0.25rem;
+    border: 1px solid $gray-300;
+    .nav-link {
+        border: none !important;
+        border-radius: $border-radius-sm;
+        color: $slate-500;
+        font-weight: 600;
+        font-size: $font-size-sm;
+        padding: 0.35rem 0.85rem;
+        background: transparent !important;
+        transition: all 0.15s ease;
+        &:hover {
+            color: $slate-700;
+            background: rgba(0, 0, 0, 0.03) !important;
+        }
+        &:focus-visible {
+            outline: none;
+            box-shadow: $focus-ring-primary;
+        }
+        &.active {
+            background-color: $white !important;
+            color: $blue-700 !important;
+            box-shadow: $box-shadow-sm;
+        }
+    }
+}
+
+.nav-pills-sm {
+    padding: 0.2rem;
+    gap: 0.15rem;
+    .nav-link {
+        font-size: $font-size-sm;
+        padding: 0.25rem 0.6rem;
+    }
+}
+
+.nav-pills-lg {
+    padding: 0.35rem;
+    gap: 0.35rem;
+    .nav-link {
+        font-size: $font-size-lg;
+        padding: 0.5rem 1.1rem;
+    }
+}

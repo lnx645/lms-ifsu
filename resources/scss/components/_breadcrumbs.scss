@@ -1,0 +1,26 @@
+// â”€â”€ 7.17. Breadcrumb â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.breadcrumb {
+    font-size: $font-size-sm;
+    .breadcrumb-item a {
+        color: $slate-500;
+        font-weight: 500;
+        text-decoration: none;
+        &:hover {
+            color: $primary;
+            text-decoration: underline;
+        }
+        &:focus-visible {
+            outline: none;
+            box-shadow: $focus-ring-primary;
+            border-radius: 2px;
+            text-decoration: none;
+        }
+    }
+    .breadcrumb-item.active {
+        color: $slate-700;
+        font-weight: 600;
+    }
+    .breadcrumb-item + .breadcrumb-item::before {
+        color: $slate-400;
+    }
+}

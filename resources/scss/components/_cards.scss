@@ -1,0 +1,95 @@
+// â”€â”€ 7.5. Card Panels â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.card {
+    border: 1px solid $gray-300;
+    border-radius: $border-radius-lg;
+    box-shadow: $box-shadow-sm;
+    background-color: $white;
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    &.card-hover:hover {
+        border-color: $gray-400;
+        box-shadow: $box-shadow-lg;
+        transform: translateY(-2px);
+    }
+}
+
+.card-primary {
+    border-color: $primary;
+    .card-header {
+        background-color: $primary-50;
+        border-bottom-color: $primary-100;
+        color: $primary-700;
+    }
+}
+
+.card-success {
+    border-color: $success;
+    .card-header {
+        background-color: $success-50;
+        border-bottom-color: $success-100;
+        color: $success-700;
+    }
+}
+
+.card-danger {
+    border-color: $danger;
+    .card-header {
+        background-color: $danger-50;
+        border-bottom-color: $danger-100;
+        color: $danger-700;
+    }
+}
+
+.card-warning {
+    border-color: $warning;
+    .card-header {
+        background-color: $warning-50;
+        border-bottom-color: $warning-100;
+        color: $warning-700;
+    }
+}
+
+.card-info {
+    border-color: $info;
+    .card-header {
+        background-color: $info-50;
+        border-bottom-color: $info-100;
+        color: $info-700;
+    }
+}
+
+.card-header {
+    background-color: $white;
+    border-bottom: 1px solid $gray-300;
+    font-weight: 600;
+    color: $slate-700;
+    padding: 0.85rem 1rem;
+}
+
+.card-sm {
+    .card-header {
+        padding: 0.55rem 0.75rem;
+        font-size: $font-size-sm;
+    }
+    .card-body {
+        padding: 0.75rem;
+    }
+    .card-footer {
+        padding: 0.55rem 0.75rem;
+    }
+}
+
+.card-lg {
+    .card-header {
+        padding: 1.1rem 1.25rem;
+        font-size: $font-size-lg;
+    }
+    .card-body {
+        padding: 1.5rem;
+    }
+    .card-footer {
+        padding: 1.1rem 1.25rem;
+    }
+}

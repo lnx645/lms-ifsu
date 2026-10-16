@@ -1,0 +1,136 @@
+:root {
+    --chakra-ring-inset: var(--chakra-empty,);
+    --chakra-ring-offset-width: 0px;
+    --chakra-ring-offset-color: #{$white};
+    --chakra-ring-color: rgba($blue-500, 0.6);
+    --chakra-ring-offset-shadow: 0 0 #0000;
+    --chakra-ring-shadow: 0 0 #0000;
+    --chakra-space-x-reverse: 0;
+    --chakra-space-y-reverse: 0;
+
+    --inv-transparent: transparent;
+    --inv-current: currentColor;
+    --inv-overlay: #{$overlay-bg};
+    --inv-overlay-fill: #{$overlay-fill};
+    --inv-background: #{$light};
+    --inv-dark: #{$dark};
+    --inv-black: #000;
+    --inv-white: #{$white};
+
+    // ── Gradients ─────────────────────────────────
+    --inv-gradient-gray: #{$gradient-gray};
+    --inv-gradient-light-primary: #{$gradient-light-primary};
+    --inv-gradient-pale-secondary: #{$gradient-pale-secondary};
+    --inv-gradient-celebration: #{$gradient-celebration};
+    --inv-gradient-royal-primary: #{$gradient-royal-primary};
+
+    // ── Alpha ─────────────────────────────────────
+    --inv-white-alpha-50: #{$white-alpha-50};
+    --inv-white-alpha-100: #{$white-alpha-100};
+    --inv-white-alpha-200: #{$white-alpha-200};
+    --inv-white-alpha-300: #{$white-alpha-300};
+    --inv-white-alpha-400: #{$white-alpha-400};
+    --inv-white-alpha-500: #{$white-alpha-500};
+    --inv-white-alpha-600: #{$white-alpha-600};
+    --inv-white-alpha-700: #{$white-alpha-700};
+    --inv-white-alpha-800: #{$white-alpha-800};
+    --inv-white-alpha-900: #{$white-alpha-900};
+
+    --inv-black-alpha-50: #{$black-alpha-50};
+    --inv-black-alpha-100: #{$black-alpha-100};
+    --inv-black-alpha-200: #{$black-alpha-200};
+    --inv-black-alpha-300: #{$black-alpha-300};
+    --inv-black-alpha-400: #{$black-alpha-400};
+    --inv-black-alpha-500: #{$black-alpha-500};
+    --inv-black-alpha-600: #{$black-alpha-600};
+    --inv-black-alpha-700: #{$black-alpha-700};
+    --inv-black-alpha-800: #{$black-alpha-800};
+    --inv-black-alpha-900: #{$black-alpha-900};
+
+    // ── Scale Colors ──────────────────────────────
+    --inv-gray-25: #{$gray-100};
+    --inv-gray-50: #{$gray-200};
+    --inv-gray-100: #{$gray-300};
+    --inv-gray-400: #{$gray-400};
+    --inv-gray-500: #{$gray-500};
+    --inv-gray-600: #{$gray-600};
+    --inv-gray-700: #{$gray-700};
+    --inv-gray-800: #{$gray-800};
+    --inv-gray-900: #{$gray-900};
+
+    // ── Semantic Color Scales ─────────────────────
+    --inv-primary-50: #{$primary-50};
+    --inv-primary-100: #{$primary-100};
+    --inv-primary-500: #{$primary};
+    --inv-primary-700: #{$primary-700};
+
+    --inv-secondary-50: #{$secondary-50};
+    --inv-secondary-100: #{$secondary-100};
+    --inv-secondary-500: #{$secondary};
+    --inv-secondary-700: #{$secondary-700};
+
+    --inv-success-50: #{$success-50};
+    --inv-success-100: #{$success-100};
+    --inv-success-500: #{$success};
+    --inv-success-700: #{$success-700};
+
+    --inv-info-50: #{$info-50};
+    --inv-info-100: #{$info-100};
+    --inv-info-500: #{$info};
+    --inv-info-700: #{$info-700};
+
+    --inv-warning-50: #{$warning-50};
+    --inv-warning-100: #{$warning-100};
+    --inv-warning-500: #{$warning};
+    --inv-warning-700: #{$warning-700};
+
+    --inv-danger-50: #{$danger-50};
+    --inv-danger-100: #{$danger-100};
+    --inv-danger-500: #{$danger};
+    --inv-danger-700: #{$danger-700};
+
+    --inv-light: #{$light};
+    --inv-dark: #{$dark};
+
+    // ── Brand Colors ──────────────────────────────
+    --inv-brand-chat: #{$brand-chat};
+    --inv-brand-sign: #{$brand-sign};
+    --inv-brand-flex: #{$brand-flex};
+    --inv-brand-capital: #{$brand-capital};
+    --inv-brand-expense: #{$brand-expense};
+    --inv-brand-university: #{$brand-university};
+
+    // ── Shadows ───────────────────────────────────
+    --inv-shadow-sm: #{$box-shadow-sm};
+    --inv-shadow-md: #{$box-shadow};
+    --inv-shadow-lg: #{$box-shadow-lg};
+    --inv-shadow-xl: #{$box-shadow-xl};
+    --inv-shadow-2xl: #{$box-shadow-2xl};
+    --inv-shadow-inner: #{$box-shadow-inner};
+    --inv-shadow-outline: #{$box-shadow-outline};
+    --inv-shadow-outline-tab: #{$box-shadow-outline-tab};
+    --inv-shadow-outer: #{$box-shadow-outer};
+    --inv-shadow-none: none;
+
+    // ── Focus Ring ────────────────────────────────
+    --inv-focus-ring: #{$focus-ring};
+    --inv-focus-ring-tab: #{$focus-ring-tab};
+
+    // ── App Shell Theme Tokens (Sumber: design tokens di atas) ──
+    --app-shell-primary: #{$primary};
+    --app-shell-primary-dark: #{$primary-700};
+    --app-shell-accent: #{$tutwuri-gold};
+    --app-shell-accent-soft: rgba(253, 212, 6, 0.16);
+    --app-shell-app-bg: #f4f6fb;
+    --app-shell-surface: #{$white};
+    --app-shell-border: #e5e8f0;
+    --app-shell-text: #1f2937;
+    --app-shell-text-muted: #64748b;
+    --app-shell-primary-soft: #eef3ff;
+    --app-shell-danger: #{$danger};
+    --app-shell-danger-soft: rgba(194, 92, 82, 0.1);
+    --app-shell-success: #{$success};
+    --app-shell-success-soft: #{$success-50};
+    --app-shell-info: #{$info};
+    --app-shell-info-soft: #{$info-50};
+}

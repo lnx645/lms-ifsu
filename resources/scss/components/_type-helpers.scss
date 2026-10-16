@@ -1,0 +1,27 @@
+// â”€â”€ 7.6. Typography Helper â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+.text-description-sm {
+    font-size: $font-size-sm;
+    color: $slate-500;
+    line-height: 1.4;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent; // Track transparan ala Google
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $gray-400; // Abu-abu terang konsisten tema
+    border-radius: 8px; // Ujung membulat
+    border: 2px solid transparent; // Jarak dari tepi layar
+    background-clip: content-box; // Agar border transparan berfungsi
+
+    &:hover {
+        background-color: $gray-500; // Sedikit lebih gelap saat dihover
+        background-clip: content-box;
+    }
+}
