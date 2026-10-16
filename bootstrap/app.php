@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
+        web: __DIR__."/../routes/web.php",
+        api: __DIR__."/../routes/api.php",
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
@@ -19,6 +20,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Percaya proxy (cloudflared tunnel, dsb) agar skema http/https
         // terdeteksi dari header X-Forwarded-Proto — cegah mixed content.
         $middleware->trustProxies(at: '*');
+        $middleware->alias(['api.key' => \App\Http\Middleware\ApiKeyMiddleware::class]);
 
         $middleware->web(append: [
             HandleInertiaRequests::class,
