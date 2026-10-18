@@ -13,7 +13,6 @@
     import GuruPenilaianController from '@/actions/App/Http/Controllers/Guru/PenilaianController';
     import GuruTugasController from '@/actions/App/Http/Controllers/Guru/TugasController';
     import GuruUjianController from '@/actions/App/Http/Controllers/Guru/UjianController';
-    import GuruBankSoalController from '@/actions/App/Http/Controllers/Guru/BankSoalController';
     import SiswaMateriController from '@/actions/App/Http/Controllers/Siswa/MateriController';
     import SiswaPenilaianController from '@/actions/App/Http/Controllers/Siswa/PenilaianController';
     import SiswaTugasController from '@/actions/App/Http/Controllers/Siswa/TugasController';

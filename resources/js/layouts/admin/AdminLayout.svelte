@@ -19,10 +19,6 @@
     import NaikKelasController from '@/actions/App/Http/Controllers/Admin/NaikKelasController';
 import PenilaianController from '@/actions/App/Http/Controllers/Admin/PenilaianController';
 import LaporanController from '@/actions/App/Http/Controllers/Admin/LaporanController';
-import UjianController from '@/actions/App/Http/Controllers/Admin/UjianController';
-import PeriodeUjianController from '@/actions/App/Http/Controllers/Admin/PeriodeUjianController';
-import RuangController from '@/actions/App/Http/Controllers/Admin/RuangController';
-import BankSoalController from '@/actions/App/Http/Controllers/Admin/BankSoalController';
 
     let {
         children,

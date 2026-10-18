@@ -16,6 +16,7 @@ use App\Http\Controllers\Siswa\MateriController as SiswaMateriController;
 use App\Http\Controllers\Siswa\NotifikasiController as SiswaNotifikasiController;
 use App\Http\Controllers\Siswa\PenilaianController as SiswaPenilaianController;
 use App\Http\Controllers\Siswa\TugasController as SiswaTugasController;
+use App\Http\Controllers\Siswa\UjianController as SiswaUjianController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,15 @@ Route::middleware(['auth', 'app-only'])->prefix('app')->name('app.')->group(func
     Route::post('tugas/{tugas}/kumpul', [SiswaTugasController::class, 'kumpul'])->name('siswa.tugas.kumpul');
     Route::get('tugas/{tugas}/unduh', [SiswaTugasController::class, 'unduh'])->name('siswa.tugas.unduh');
     Route::get('nilai', [SiswaPenilaianController::class, 'index'])->name('siswa.penilaian.index');
+
+    // Siswa: Ujian (dibangun ulang 2026-10-18 untuk KP)
+    Route::get('ujian', [SiswaUjianController::class, 'index'])->name('siswa.ujian.index');
+    Route::get('ujian/{ujian}/konfirmasi', [SiswaUjianController::class, 'konfirmasi'])->name('siswa.ujian.konfirmasi');
+    Route::post('ujian/{ujian}/mulai', [SiswaUjianController::class, 'mulai'])->name('siswa.ujian.mulai');
+    Route::get('ujian/{ujian}/kerjakan', [SiswaUjianController::class, 'kerjakan'])->name('siswa.ujian.kerjakan');
+    Route::post('ujian/{ujian}/jawaban', [SiswaUjianController::class, 'simpanJawaban'])->name('siswa.ujian.jawaban');
+    Route::post('ujian/{ujian}/selesai', [SiswaUjianController::class, 'submit'])->name('siswa.ujian.selesai');
+    Route::get('ujian/{ujian}/hasil', [SiswaUjianController::class, 'hasil'])->name('siswa.ujian.hasil');
 
     // Guru: Wizard pembuatan ujian (CBT v2)
 
